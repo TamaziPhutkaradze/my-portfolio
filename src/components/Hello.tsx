@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import backImg from "../assets/backImg.svg";
-
+import { motion } from "framer-motion";
 export default function Hello() {
   return (
     <>
       <Main>
-        <TextDiv>
+        <TextDiv as={motion.div} animate={{ paddingTop: 96, opacity: 1 }}>
           <Hi>Hi all. I am</Hi>
           <Name>Tamazi Phutkaradze</Name>
         </TextDiv>
@@ -37,21 +37,24 @@ const Main = styled.div`
   padding-bottom: 85px;
 `;
 const TextDiv = styled.div`
-  padding-top: 96px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 300px;
 `;
 const Hi = styled.p`
   font-weight: 400;
   font-size: 18px;
   color: white;
 `;
-const Name = styled.h1`
-  font-size: 42px;
+const Name = styled(motion.h1)`
+  font-size: 45px;
   font-weight: 400;
   color: white;
-  line-height: 44px;
+  line-height: 47px;
+  white-space: pre-wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 const Role = styled.p`
   font-size: 20px;
