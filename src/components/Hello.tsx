@@ -5,11 +5,15 @@ export default function Hello() {
   return (
     <>
       <Main>
-        <TextDiv as={motion.div} animate={{ paddingTop: 96, opacity: 1 }}>
+        <TextDiv
+          as={motion.div}
+          transition={{ duration: 2 }}
+          animate={{ paddingTop: 96, opacity: 1 }}
+        >
           <Hi>Hi all. I am</Hi>
           <Name>Tamazi Phutkaradze</Name>
+          <Role> &gt; Front-end developer</Role>
         </TextDiv>
-        <Role> &gt; Front-end developer</Role>
         <Github>
           <Find>// find my profile on Github:</Find>
           <GithubLink>
@@ -32,36 +36,41 @@ const Main = styled.div`
   width: 100%;
   background: #011627;
   border: 1px solid rgb(30, 45, 61);
-  border-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   padding-left: 27px;
   padding-bottom: 85px;
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 const TextDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 300px;
+  width: 458px;
 `;
 const Hi = styled.p`
   font-weight: 400;
-  font-size: 18px;
   color: white;
+  font-size: clamp(1.125rem, 2.5vw, 3rem);
 `;
 const Name = styled(motion.h1)`
-  font-size: 45px;
+  font-size: clamp(2.813rem, 7vw, 4rem);
   font-weight: 400;
   color: white;
-  line-height: 47px;
   white-space: pre-wrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: clamp(47px, 55px, 65px);
 `;
 const Role = styled.p`
   font-size: 20px;
   color: #40cfa8;
 `;
 const Github = styled.div`
-  padding-top: 200px;
   display: flex;
   gap: 12px;
   flex-direction: column;
