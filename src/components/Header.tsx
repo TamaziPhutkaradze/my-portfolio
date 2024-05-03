@@ -19,7 +19,12 @@ export default function Navbar() {
       {locationPath === "/navbar" ? (
         <Link to={"/"}>
           {" "}
-          <Close src={CloseIcon} />
+          <Close
+            as={motion.img}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 2 }}
+            src={CloseIcon}
+          />
         </Link>
       ) : (
         <Link to={"/navbar"}>
@@ -51,4 +56,6 @@ const NameDiv = styled.p`
 const Menu = styled.img`
   opacity: 0;
 `;
-const Close = styled.img``;
+const Close = styled.img`
+  opacity: 0;
+`;
