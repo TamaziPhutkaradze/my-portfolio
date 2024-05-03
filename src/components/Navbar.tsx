@@ -1,37 +1,45 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-
 export default function Navbar() {
   return (
     <Main>
-      <ListItem
-        as={motion.li}
-        transition={{ duration: 2 }}
-        animate={{ paddingLeft: 19 }}
-      >
-        _hello
-      </ListItem>
-      <ListItem
-        as={motion.li}
-        transition={{ duration: 2 }}
-        animate={{ paddingLeft: 19 }}
-      >
-        _about-me
-      </ListItem>
-      <ListItem
-        as={motion.li}
-        transition={{ duration: 2 }}
-        animate={{ paddingLeft: 19 }}
-      >
-        _projects
-      </ListItem>
-      <ListItem
-        as={motion.li}
-        transition={{ duration: 2 }}
-        animate={{ paddingLeft: 19 }}
-      >
-        _contact-me
-      </ListItem>
+      <Link to={"/"}>
+        <ListItem
+          as={motion.li}
+          transition={{ duration: 2 }}
+          animate={{ paddingLeft: 19 }}
+        >
+          _hello
+        </ListItem>
+      </Link>
+      <Link to={"/AboutMe"}>
+        <ListItem
+          as={motion.li}
+          transition={{ duration: 2 }}
+          animate={{ paddingLeft: 19 }}
+        >
+          _about-me
+        </ListItem>
+      </Link>
+      <Link to={"/Projects"}>
+        <ListItem
+          as={motion.li}
+          transition={{ duration: 2 }}
+          animate={{ paddingLeft: 19 }}
+        >
+          _projects
+        </ListItem>
+      </Link>
+      <Link to={"/Contact"}>
+        <ListItem
+          as={motion.li}
+          transition={{ duration: 2 }}
+          animate={{ paddingLeft: 19 }}
+        >
+          _contact-me
+        </ListItem>
+      </Link>
     </Main>
   );
 }
