@@ -38,8 +38,6 @@ export default function Navbar() {
 const Main = styled.ul`
   background: #011627;
   border: 1px solid rgb(30, 45, 61);
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
   height: 100vh;
 `;
 const ListItem = styled.li`
