@@ -7,9 +7,11 @@ import { motion } from "framer-motion";
 import EmailIcon from "../assets/emailIcon.svg";
 import PhoneIcon from "../assets/phoneIcon.svg";
 export default function AboutMe() {
-  const [infoAccordionOpen, setAccordionOpen] = useState<Boolean>(false);
+  const [infoAccordionOpen, setAccordionOpen] = useState<boolean>(false);
   const [contactAccordionOpen, setContactAccordionOpen] =
-    useState<Boolean>(false);
+    useState<boolean>(false);
+  const [personalOpen, setPersonalOpen] = useState<boolean>(false);
+  const [professionalOpen, setProfessionalOpen] = useState<boolean>(false);
 
   return (
     <Main>
@@ -30,13 +32,33 @@ export default function AboutMe() {
               animate={{ paddingTop: 16, opacity: 1 }}
               transition={{ duration: 2 }}
             >
-              <Personal>
-                <img src={Arrow} />
+              <Personal
+                onClick={() => {
+                  setPersonalOpen(true);
+                  setProfessionalOpen(false);
+                }}
+              >
+                <PersonalArrow
+                  src={Arrow}
+                  isPersonalOpen={personalOpen}
+                  animate={{ rotate: personalOpen ? 90 : 0 }}
+                  transition={{ duration: 0.7 }}
+                />
                 <img src={FolderIcon} />
                 <PersonalSpan>personal</PersonalSpan>
               </Personal>
-              <Professional>
-                <img src={Arrow} />
+              <Professional
+                onClick={() => {
+                  setProfessionalOpen(true);
+                  setPersonalOpen(false);
+                }}
+              >
+                <ProfessionalArrow
+                  src={Arrow}
+                  isProfessionalOpen={professionalOpen}
+                  animate={{ rotate: professionalOpen ? 90 : 0 }}
+                  transition={{ duration: 0.7 }}
+                />
                 <img src={GreenFolderIcon} />
                 <ProfessionalSpan>professional</ProfessionalSpan>
               </Professional>
@@ -45,7 +67,12 @@ export default function AboutMe() {
           <Contact
             onClick={() => setContactAccordionOpen(!contactAccordionOpen)}
           >
-            <img src={Arrow} />
+            <ArrowForContact
+              src={Arrow}
+              isOpen={contactAccordionOpen}
+              animate={{ rotate: contactAccordionOpen ? 90 : 0 }}
+              transition={{ duration: 0.7 }}
+            />
             <BtnName>contacts</BtnName>
           </Contact>
           {contactAccordionOpen && (
@@ -65,6 +92,35 @@ export default function AboutMe() {
             </Box>
           )}
         </List>
+        {personalOpen ? (
+          <Container>
+            <ParagraphTitle>// personal-info </ParagraphTitle>
+            <TextAboutMe>
+              I have 5 years of experience in web development lorem ipsum dolor
+              sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+              veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+              ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+              in. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+              officia deserunt mollit anim id est laborum.
+            </TextAboutMe>
+          </Container>
+        ) : professionalOpen ? (
+          <Container>
+            <ParagraphTitle>// professional-info </ParagraphTitle>
+            <TextAboutMe>
+              I have 5 years of experience in web development lorem ipsum dolor
+              sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+              veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+              ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+              in. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+              officia deserunt mollit anim id est laborum.
+            </TextAboutMe>
+          </Container>
+        ) : null}
       </Wrapper>
     </Main>
   );
@@ -74,7 +130,7 @@ const Main = styled.div`
 `;
 const Wrapper = styled.div`
   padding: 21px 6px 38px 9px;
-  height: 87vh;
+  height: 120vh;
 `;
 const PageName = styled.p`
   color: white;
@@ -143,7 +199,7 @@ const EmailDiv = styled.div`
 const EmailImg = styled.img``;
 const Email = styled.p`
   color: #607b96;
-  font-size: 12px;
+  font-size: 16px;
 `;
 const PhoneNumber = styled.div`
   display: flex;
@@ -158,4 +214,29 @@ const Box = styled.div`
 `;
 const NumberP = styled.p`
   color: #607b96;
+`;
+const ArrowForContact = styled(motion.img)<{ isOpen: boolean }>`
+  transform: ${(props) => (props.isOpen ? "rotate(90deg)" : "")};
+`;
+const Container = styled.div`
+  padding: 38px 27px;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+`;
+const ParagraphTitle = styled.p`
+  color: white;
+  font-size: 16px;
+`;
+const TextAboutMe = styled.div`
+  font-size: 16px;
+  color: #607b96;
+`;
+const PersonalArrow = styled(motion.img)<{ isPersonalOpen: boolean }>`
+  transform: ${(props) =>
+    props.isPersonalOpen === true ? "rotate(90deg)" : ""};
+`;
+const ProfessionalArrow = styled(motion.img)<{ isProfessionalOpen: boolean }>`
+  transform: ${(props) =>
+    props.isProfessionalOpen === true ? "rotate(90deg)" : ""};
 `;
