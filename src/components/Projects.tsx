@@ -6,18 +6,14 @@ import Data from "../data.json";
 export default function Projects() {
   const [projectsOpen, setProjectsOpen] = useState<boolean>(false);
   const [data, _setData] = useState(Data);
-  const [checkbox, setCheckbox] = useState<any>([]);
-  const [arr, setArr] = useState<any>([]);
-  const techStacks = data.TechStack;
-  console.log(checkbox);
+  const [selectedItems, setSelectedItems] = useState<any>([]);
   const handleChange = (e: any) => {
     let isChecked = e.target.checked;
-    console.log(isChecked);
     let value = e.target.value;
     if (isChecked) {
-      setCheckbox([...checkbox, value]);
+      setSelectedItems([...selectedItems, value]);
     } else {
-      setCheckbox((prevData: []) => {
+      setSelectedItems((prevData: []) => {
         return prevData.filter((name: string) => {
           return name !== value;
         });
@@ -38,23 +34,34 @@ export default function Projects() {
         />
         <BtnName>Tech Stacks</BtnName>
       </Btn>
-      <TechStacksList>
-        {techStacks.map((item, index) => {
-          return (
-            <FirstLabel key={index} onClick={() => setArr([...arr, item])}>
-              <Checkbox
-                type="checkbox"
-                value={item}
-                checked={checkbox.includes(item)}
-                onChange={handleChange}
-              />
-              <TechName key={index}>{item}</TechName>
-            </FirstLabel>
-          );
-        })}
-      </TechStacksList>
+      {projectsOpen ? (
+        <TechStacksList>
+          {data.TechStack.map((item, index) => {
+            return (
+              <FirstLabel key={index}>
+                <Checkbox
+                  type="checkbox"
+                  value={item}
+                  checked={selectedItems.includes(item)}
+                  onChange={handleChange}
+                />
+                <TechName key={index}>{item}</TechName>
+              </FirstLabel>
+            );
+          })}
+        </TechStacksList>
+      ) : (
+        ""
+      )}
       <ProjectsContainer>
-        <SelectedTechStacks>// projects / all</SelectedTechStacks>
+        <SelectedTechStacks>
+          // projects /
+          {selectedItems.length < 1
+            ? "All"
+            : selectedItems.map((item: string, index: number) => {
+                return <Names key={index}>{item}</Names>;
+              })}
+        </SelectedTechStacks>
       </ProjectsContainer>
     </Wrapper>
   );
@@ -94,6 +101,9 @@ const ProjectsContainer = styled.div`
 `;
 const SelectedTechStacks = styled.div`
   color: white;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 `;
 const TechStacksList = styled.div`
   padding: 16px 0 0 27px;
@@ -106,4 +116,7 @@ const FirstLabel = styled.label`
 const Checkbox = styled.input``;
 const TechName = styled.p`
   color: white;
+`;
+const Names = styled.div`
+  padding-left: 10px;
 `;
