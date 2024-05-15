@@ -2,11 +2,13 @@ import styled from "styled-components";
 import Arrow from "../assets/arrow.svg";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import Data from "../data.json";
+import Data from "../../public/data.json";
+import { Link } from "react-router-dom";
 export default function Projects() {
   const [projectsOpen, setProjectsOpen] = useState<boolean>(false);
   const [data, _setData] = useState(Data);
   const [selectedItems, setSelectedItems] = useState<any>([]);
+  console.log(data);
   const handleChange = (e: any) => {
     let isChecked = e.target.checked;
     let value = e.target.value;
@@ -63,13 +65,31 @@ export default function Projects() {
               })}
         </SelectedTechStacks>
       </ProjectsContainer>
+      <CardsContainer>
+        {data.projects.map((item) => {
+          return (
+            <div key={item.id}>
+              <ProjectNum>project {item.id}</ProjectNum>
+              <Card>
+                <ImgDiv>
+                  <ProjectImg src={item.img} />
+                </ImgDiv>
+                <Line /> <ProjectTitle>{item.name}</ProjectTitle>
+                <Link to={item.live}>
+                  <LiveButton>view-project</LiveButton>{" "}
+                </Link>
+              </Card>
+            </div>
+          );
+        })}
+      </CardsContainer>
     </Wrapper>
   );
 }
 const Wrapper = styled.div`
   background-color: #011627;
   padding: 21px 0 38px;
-  height: 100vh;
+  min-height: 100vh;
 `;
 const PageTitleDiv = styled.div`
   padding-left: 27px;
@@ -97,7 +117,7 @@ const ArrowImg = styled(motion.img)<{ btnClicked: boolean }>`
   transform: ${(props) => (props.btnClicked ? "rotate(90deg)" : "")};
 `;
 const ProjectsContainer = styled.div`
-  padding: 38px 27px;
+  padding: 38px 27px 0;
 `;
 const SelectedTechStacks = styled.div`
   color: white;
@@ -119,4 +139,49 @@ const TechName = styled.p`
 `;
 const Names = styled.div`
   padding-left: 10px;
+`;
+const CardsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-left: 27px;
+  padding-right: 42px;
+`;
+const ProjectNum = styled.h1`
+  padding-top: 17px;
+  color: #5565e8;
+  font-size: 16px;
+`;
+const Card = styled.div`
+  border-radius: 15px;
+  min-width: 281px;
+  max-width: 400px;
+  border: 1px solid #1e2d3d;
+  margin: auto;
+  margin-top: 15px;
+`;
+const ProjectImg = styled.img`
+  width: 100%;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  min-width: 281px;
+`;
+const ImgDiv = styled.div``;
+const Line = styled.hr`
+  height: 1px;
+  width: 100%;
+`;
+const ProjectTitle = styled.div`
+  padding-top: 29px;
+  color: white;
+  font-size: 14px;
+  text-align: center;
+`;
+const LiveButton = styled.button`
+  width: 129px;
+  padding: 10px 14px;
+  background-color: #1c2b3a;
+  color: white;
+  border-radius: 10px;
+  font-size: 14px;
+  margin: 23px;
 `;

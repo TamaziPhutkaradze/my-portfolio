@@ -13,15 +13,15 @@
       "id": 1,
       "name": "entertainment-web-app",
       "techStack": ["React", "Tailwind CSS", "Typescript"],
-      "img": "",
-      "live": "https://task-management-website-ten.vercel.app/platform-launch",
+      "img": "./projectsImg/entertainment-web-app.webp",
+      "live": "https://entertainment-web-app-ecru.vercel.app/",
       "github": "https://github.com/TamaziPhutkaradze/entertainment-web-app"
-    },
+    },  
     {
       "id": 2,
       "name": "planets-fact-site",
       "techStack": ["React", "Styled Components", "Typescript"],
-      "img": "",
+      "img": "/projectsImg/planets.jpg",
       "live": "https://planets-fact-site-xi.vercel.app/home/Earth",
       "github": "https://github.com/TamaziPhutkaradze/planets-fact-site"
     },
@@ -29,7 +29,7 @@
       "id": 3,
       "name": "ecommerce-product-page",
       "techStack": ["React", "Styled Components", "Typescript"],
-      "img": "",
+      "img": "/projectsImg/product-page design.jpg",
       "live": "https://ecommerce-product-page-nu-two.vercel.app/",
       "github": "https://github.com/TamaziPhutkaradze/ecommerce-product-page"
     },
@@ -37,7 +37,7 @@
       "id": 4,
       "name": "job-listings-with-filtering",
       "techStack": ["React", "Tailwind CSS", "Typescript"],
-      "img": "",
+      "img": "/projectsImg/job-list.webp",
       "live": "https://job-listings-with-filtering-fawn.vercel.app/",
       "github": "https://github.com/TamaziPhutkaradze/job-listings-with-filtering"
     },
@@ -45,7 +45,7 @@
       "id": 5,
       "name": "tbc-project",
       "techStack": ["HTML", "CSS", "VanillaJS"],
-      "img": "",
+      "img": "/projectsImg/tbc-project.png",
       "live": "https://tbc-project.vercel.app/",
       "github": "https://github.com/TamaziPhutkaradze/tbc-project"
     }
