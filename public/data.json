@@ -12,7 +12,7 @@
     {
       "id": 1,
       "name": "entertainment-web-app",
-      "techStack": ["React", "Tailwind CSS", "Typescript"],
+      "techStack": ["React", "Tailwind CSS", "Typescript"], 
       "img": "./projectsImg/entertainment-web-app.webp",
       "live": "https://entertainment-web-app-ecru.vercel.app/",
       "github": "https://github.com/TamaziPhutkaradze/entertainment-web-app"

@@ -8,7 +8,6 @@ export default function Projects() {
   const [projectsOpen, setProjectsOpen] = useState<boolean>(false);
   const [data, _setData] = useState(Data);
   const [selectedItems, setSelectedItems] = useState<any>([]);
-  console.log(data);
   const handleChange = (e: any) => {
     let isChecked = e.target.checked;
     let value = e.target.value;
@@ -22,6 +21,11 @@ export default function Projects() {
       });
     }
   };
+  console.log(selectedItems);
+  const filterData = data.projects.filter((item) => {
+    return selectedItems.every((tech: any) => item.techStack.includes(tech));
+  });
+  console.log(filterData);
   return (
     <Wrapper>
       <PageTitleDiv>
@@ -66,7 +70,7 @@ export default function Projects() {
         </SelectedTechStacks>
       </ProjectsContainer>
       <CardsContainer>
-        {data.projects.map((item) => {
+        {filterData.map((item) => {
           return (
             <div key={item.id}>
               <ProjectNum>project {item.id}</ProjectNum>
@@ -133,7 +137,12 @@ const FirstLabel = styled.label`
   gap: 5px;
 `;
 
-const Checkbox = styled.input``;
+const Checkbox = styled.input`
+  width: 25px;
+  height: 25px;
+  border: 1px solid grey;
+  background-color: grey;
+`;
 const TechName = styled.p`
   color: white;
 `;
