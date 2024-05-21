@@ -28,10 +28,14 @@ export default function Projects() {
   console.log(filterData);
   return (
     <Wrapper>
-      <PageTitleDiv>
+      <PageTitleDiv animate={{ paddingLeft: 27 }} transition={{ duration: 2 }}>
         <PageTitle>_projects</PageTitle>
       </PageTitleDiv>
-      <Btn onClick={() => setProjectsOpen(!projectsOpen)}>
+      <Btn
+        onClick={() => setProjectsOpen(!projectsOpen)}
+        animate={{ marginTop: 29 }}
+        transition={{ duration: 2 }}
+      >
         <ArrowImg
           src={Arrow}
           btnClicked={projectsOpen}
@@ -41,7 +45,10 @@ export default function Projects() {
         <BtnName>Tech Stacks</BtnName>
       </Btn>
       {projectsOpen ? (
-        <TechStacksList>
+        <TechStacksList
+          animate={{ paddingTop: 16 }}
+          transition={{ duration: 2 }}
+        >
           {data.TechStack.map((item, index) => {
             return (
               <FirstLabel key={index}>
@@ -60,7 +67,10 @@ export default function Projects() {
         ""
       )}
       <ProjectsContainer>
-        <SelectedTechStacks>
+        <SelectedTechStacks
+          animate={{ opacity: 1 }}
+          transition={{ duration: 2 }}
+        >
           // projects /
           {selectedItems.length < 1
             ? "All"
@@ -74,7 +84,7 @@ export default function Projects() {
           return (
             <div key={item.id}>
               <ProjectNum>project {item.id}</ProjectNum>
-              <Card>
+              <Card animate={{ opacity: 1 }} transition={{ duration: 2 }}>
                 <ImgDiv>
                   <ProjectImg src={item.img} />
                 </ImgDiv>
@@ -95,23 +105,20 @@ const Wrapper = styled.div`
   padding: 21px 0 38px;
   min-height: 100vh;
 `;
-const PageTitleDiv = styled.div`
-  padding-left: 27px;
-`;
+const PageTitleDiv = styled(motion.div)``;
 const PageTitle = styled.h1`
   color: white;
   font-size: 16px;
   font-weight: 400;
 `;
-const Btn = styled.button`
-  width: 100%;
-  margin-top: 29px;
+const Btn = styled(motion.button)`
   background-color: #1e2d3d;
   text-align: left;
-  padding: 5px 29px;
+  padding: 5px 0 5px 29px;
   display: flex;
   gap: 13px;
   align-items: center;
+  width: 100%;
 `;
 const BtnName = styled.span`
   color: white;
@@ -123,14 +130,15 @@ const ArrowImg = styled(motion.img)<{ btnClicked: boolean }>`
 const ProjectsContainer = styled.div`
   padding: 38px 27px 0;
 `;
-const SelectedTechStacks = styled.div`
+const SelectedTechStacks = styled(motion.div)`
   color: white;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  opacity: 0;
 `;
-const TechStacksList = styled.div`
-  padding: 16px 0 0 27px;
+const TechStacksList = styled(motion.div)`
+  padding: 0 0 0 27px;
 `;
 const FirstLabel = styled.label`
   display: flex;
@@ -160,13 +168,14 @@ const ProjectNum = styled.h1`
   color: #5565e8;
   font-size: 16px;
 `;
-const Card = styled.div`
+const Card = styled(motion.div)`
   border-radius: 15px;
   min-width: 281px;
   max-width: 400px;
   border: 1px solid #1e2d3d;
   margin: auto;
   margin-top: 15px;
+  opacity: 0;
 `;
 const ProjectImg = styled.img`
   width: 100%;
