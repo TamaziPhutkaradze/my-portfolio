@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import Data from "../../public/data.json";
 import { Link } from "react-router-dom";
+
 export default function Projects() {
   const [projectsOpen, setProjectsOpen] = useState<boolean>(false);
   const [data, _setData] = useState(Data);
@@ -52,11 +53,25 @@ export default function Projects() {
           {data.TechStack.map((item, index) => {
             return (
               <FirstLabel key={index}>
-                <Checkbox
+                <input
                   type="checkbox"
                   value={item}
                   checked={selectedItems.includes(item)}
                   onChange={handleChange}
+                  className="
+                  peer
+                  relative 
+                  appearance-none 
+                  w-5
+                  h-5
+                  rounded-sm
+                  focus:outline-none
+                  checked:bg-gray-500 
+                  checked:bg-[url('././assets/vector.svg')]
+                  ring
+                  bg-no-repeat
+                  bg-center
+                  "
                 />
                 <TechName key={index}>{item}</TechName>
               </FirstLabel>
@@ -139,20 +154,19 @@ const SelectedTechStacks = styled(motion.div)`
 `;
 const TechStacksList = styled(motion.div)`
   padding: 0 0 0 27px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 `;
 const FirstLabel = styled.label`
   display: flex;
-  gap: 5px;
-`;
-
-const Checkbox = styled.input`
-  width: 25px;
-  height: 25px;
-  border: 1px solid grey;
-  background-color: grey;
+  gap: 15px;
+  align-items: center;
 `;
 const TechName = styled.p`
   color: white;
+  font-size: 16px;
+  font-weight: 200;
 `;
 const Names = styled.div`
   padding-left: 10px;
