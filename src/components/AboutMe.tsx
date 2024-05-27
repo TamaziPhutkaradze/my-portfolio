@@ -130,7 +130,7 @@ const Main = styled.div`
 `;
 const Wrapper = styled.div`
   padding: 21px 6px 38px 9px;
-  height: 120vh;
+  height: 100vh;
 `;
 const PageName = styled.p`
   color: white;

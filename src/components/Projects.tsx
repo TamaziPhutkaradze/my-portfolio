@@ -3,10 +3,9 @@ import Arrow from "../assets/arrow.svg";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import Data from "../../public/data.json";
-import { Link } from "react-router-dom";
 
 export default function Projects() {
-  const [projectsOpen, setProjectsOpen] = useState<boolean>(false);
+  const [projectsOpen, setProjectsOpen] = useState<boolean>(true);
   const [data, _setData] = useState(Data);
   const [selectedItems, setSelectedItems] = useState<any>([]);
   const handleChange = (e: any) => {
@@ -104,9 +103,9 @@ export default function Projects() {
                   <ProjectImg src={item.img} />
                 </ImgDiv>
                 <Line /> <ProjectTitle>{item.name}</ProjectTitle>
-                <Link to={item.live}>
+                <a href={item.live} target="_blank">
                   <LiveButton>view-project</LiveButton>{" "}
-                </Link>
+                </a>{" "}
               </Card>
             </div>
           );
@@ -166,7 +165,7 @@ const FirstLabel = styled.label`
 const TechName = styled.p`
   color: white;
   font-size: 16px;
-  font-weight: 200;
+  font-weight: 2 00;
 `;
 const Names = styled.div`
   padding-left: 10px;
