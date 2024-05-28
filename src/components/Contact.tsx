@@ -82,11 +82,26 @@ export default function Contact() {
           </Socials>
         )}
       </Buttons>
+      <TextsContainer>
+        <InputDiv>
+          <InputName>_name:</InputName>
+          <Input />
+        </InputDiv>
+        <InputDiv>
+          <InputName>_email:</InputName>
+          <Input />
+        </InputDiv>
+        <InputDiv>
+          <InputName>_message:</InputName>
+          <TextArea />
+        </InputDiv>
+      </TextsContainer>
     </Wrapper>
   );
 }
 const Wrapper = styled.div`
   background-color: #011627;
+  height: 100vh;
 `;
 const PageTitle = styled.div`
   padding: 28px 21px;
@@ -159,4 +174,39 @@ const LinkDiv = styled(motion.div)`
   gap: 9px;
   align-items: center;
   color: #607b96;
+`;
+const TextsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 42px 21px 38px;
+  gap: 15px;
+`;
+const InputDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+const InputName = styled.p`
+  color: #607b96;
+  font-size: 16px;
+  font-weight: 400;
+`;
+const Input = styled.input`
+  width: 100%;
+  height: 41px;
+  background-color: #011221;
+  color: #ffff;
+  border-radius: 10px;
+  padding-left: 15px;
+`;
+const TextArea = styled.textarea`
+  width: 100%;
+  height: 145px;
+  background-color: #011221;
+  border-radius: 10px;
+  resize: none;
+  padding: 15px;
+  color: #ffff;
+  font-size: 16px;
+  font-weight: 400;
 `;
