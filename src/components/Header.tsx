@@ -3,7 +3,7 @@ import MenuIcon from "../assets/menu.svg";
 import CloseIcon from "../assets/closeIcon.svg";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { useLocation, Location, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export default function Navbar() {
