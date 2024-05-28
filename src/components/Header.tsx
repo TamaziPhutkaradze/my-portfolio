@@ -3,12 +3,21 @@ import MenuIcon from "../assets/menu.svg";
 import CloseIcon from "../assets/closeIcon.svg";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useLocation, Location, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 export default function Navbar() {
   let location: any = useLocation();
   let locationPath = location.pathname;
   console.log(locationPath);
-
+  const [lastLocation, setLastLocation] = useState<any>(null);
+  const [lastLocationPath, setLastLocationPath] = useState("");
+  useEffect(() => {
+    if (lastLocation) {
+      setLastLocationPath(lastLocation.pathname);
+    }
+    setLastLocation(location);
+  }, [location]);
   return (
     <Main
       as={motion.div}
@@ -17,7 +26,7 @@ export default function Navbar() {
     >
       <NameDiv>Tamazi-Phutkaradze</NameDiv>
       {locationPath === "/navbar" ? (
-        <Link to={"/"}>
+        <Link to={`${lastLocationPath}`}>
           {" "}
           <Close
             as={motion.img}

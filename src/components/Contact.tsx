@@ -101,7 +101,7 @@ export default function Contact() {
 }
 const Wrapper = styled.div`
   background-color: #011627;
-  height: 100vh;
+  overflow: hidden auto;
 `;
 const PageTitle = styled.div`
   padding: 28px 21px;
