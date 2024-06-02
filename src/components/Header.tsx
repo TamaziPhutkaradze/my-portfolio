@@ -5,12 +5,15 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-
+type Location = {
+  pathname: string;
+};
 export default function Navbar() {
-  let location: any = useLocation();
+  let location = useLocation();
   let locationPath = location.pathname;
   console.log(locationPath);
-  const [lastLocation, setLastLocation] = useState<any>(null);
+  const [lastLocation, setLastLocation] = useState<Location | null>(null);
+
   const [lastLocationPath, setLastLocationPath] = useState("");
   useEffect(() => {
     if (lastLocation) {

@@ -1,17 +1,38 @@
 import styled from "styled-components";
 import Arrow from "../assets/arrow.svg";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import EmailIcon from "../assets/emailIcon.svg";
 import PhoneIcon from "../assets/phoneIcon.svg";
 import LinkIcon from "../assets/LinkIcon.svg";
-
+import emailjs from "@emailjs/browser";
 export default function Contact() {
   const [contactIsOpen, setContactIsOpen] = useState<boolean>(false);
   const [secondBtnIsOpen, setSecondBtnIsOpen] = useState<boolean>(false);
-
+  const [sent, setSent] = useState<boolean>(false);
+  const form: any = useRef();
+  const sendEmail = (e: any) => {
+    e.preventDefault();
+    emailjs
+      .sendForm("service_8918u9i", "template_7kbv0ll", form.current, {
+        publicKey: "17skn_PaUmSsBCfNC",
+      })
+      .then(
+        () => {
+          console.log("SUCCESS!");
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+        }
+      );
+    e.target.reset();
+  };
   return (
-    <Wrapper>
+    <Wrapper
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 2 }}
+    >
       <PageTitle>_contact</PageTitle>
       <Buttons>
         <Contacts onClick={() => setContactIsOpen(!contactIsOpen)}>
@@ -28,6 +49,7 @@ export default function Contact() {
             <EmailDiv
               as={motion.div}
               transition={{ duration: 2 }}
+              initial={{ paddingTop: 0 }}
               animate={{ paddingTop: 16 }}
             >
               <EmailImg src={EmailIcon} />
@@ -82,24 +104,42 @@ export default function Contact() {
           </Socials>
         )}
       </Buttons>
-      <TextsContainer>
-        <InputDiv>
-          <InputName>_name:</InputName>
-          <Input />
-        </InputDiv>
-        <InputDiv>
-          <InputName>_email:</InputName>
-          <Input />
-        </InputDiv>
-        <InputDiv>
-          <InputName>_message:</InputName>
-          <TextArea />
-        </InputDiv>
+      <TextsContainer onSubmit={sendEmail} ref={form}>
+        {sent === false ? (
+          <>
+            <InputDiv>
+              <InputName>_name:</InputName>
+              <Input />
+            </InputDiv>
+            <InputDiv>
+              <InputName>_email:</InputName>
+              <Input />
+            </InputDiv>
+            <InputDiv>
+              <InputName>_message:</InputName>
+              <TextArea name="message" />
+            </InputDiv>
+            <SubmitButton onClick={() => setSent(true)}>
+              submit-message
+            </SubmitButton>
+          </>
+        ) : (
+          <TextBox>
+            <Thank>Thank you! 🤘</Thank>{" "}
+            <AcceptedMessage>
+              Your message has been accepted. You will recieve answer really
+              soon!
+            </AcceptedMessage>
+            <ButtonNewMessage onClick={() => setSent(false)}>
+              send-new-message
+            </ButtonNewMessage>
+          </TextBox>
+        )}
       </TextsContainer>
     </Wrapper>
   );
 }
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
   background-color: #011627;
   overflow: hidden auto;
 `;
@@ -175,7 +215,7 @@ const LinkDiv = styled(motion.div)`
   align-items: center;
   color: #607b96;
 `;
-const TextsContainer = styled.div`
+const TextsContainer = styled.form`
   display: flex;
   flex-direction: column;
   padding: 42px 21px 38px;
@@ -209,4 +249,37 @@ const TextArea = styled.textarea`
   color: #ffff;
   font-size: 16px;
   font-weight: 400;
+`;
+const SubmitButton = styled.button`
+  width: 146px;
+  background-color: #1c2b3a;
+  color: white;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 10px 14px;
+  border-radius: 5px;
+`;
+const TextBox = styled.div`
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+  text-align: center;
+`;
+const Thank = styled.p`
+  color: white;
+  font-weight: 400;
+  font-size: 24px;
+`;
+const AcceptedMessage = styled.span`
+  color: #607b96;
+  font-size: 18px;
+`;
+const ButtonNewMessage = styled.button`
+  width: 163px;
+  padding: 10px 14px;
+  color: white;
+  font-size: 14px;
+  border-radius: 5px;
+  background-color: #1c2b3a;
+  margin: auto;
 `;
