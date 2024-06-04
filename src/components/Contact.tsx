@@ -6,11 +6,23 @@ import EmailIcon from "../assets/emailIcon.svg";
 import PhoneIcon from "../assets/phoneIcon.svg";
 import LinkIcon from "../assets/LinkIcon.svg";
 import emailjs from "@emailjs/browser";
+import { useForm } from "react-hook-form";
+interface inputTypes {
+  email: string;
+  message: string;
+  name: string;
+}
 export default function Contact() {
   const [contactIsOpen, setContactIsOpen] = useState<boolean>(false);
   const [secondBtnIsOpen, setSecondBtnIsOpen] = useState<boolean>(false);
   const [sent, setSent] = useState<boolean>(false);
   const form: any = useRef();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<inputTypes>();
+  console.log("errors", errors);
   const sendEmail = (e: any) => {
     e.preventDefault();
     emailjs
@@ -19,7 +31,7 @@ export default function Contact() {
       })
       .then(
         () => {
-          console.log("SUCCESS!");
+          setSent(true);
         },
         (error) => {
           console.log("FAILED...", error.text);
@@ -27,6 +39,7 @@ export default function Contact() {
       );
     e.target.reset();
   };
+
   return (
     <Wrapper
       initial={{ opacity: 0 }}
@@ -104,22 +117,42 @@ export default function Contact() {
           </Socials>
         )}
       </Buttons>
-      <TextsContainer onSubmit={sendEmail} ref={form}>
+      <TextsContainer onSubmit={handleSubmit(sendEmail)} ref={form}>
         {sent === false ? (
           <>
             <InputDiv>
               <InputName>_name:</InputName>
-              <Input />
+              <Input
+                {...register("name", {
+                  required: "can't be empty",
+                })}
+                name="name"
+              />
             </InputDiv>
             <InputDiv>
               <InputName>_email:</InputName>
-              <Input />
+              <Input
+                {...register("email", {
+                  required: "can't be empty",
+                  pattern: {
+                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                    message: "enter valid email",
+                  },
+                })}
+                name="email"
+              />
+              <ErrorMessage>{errors.email?.message}</ErrorMessage>
             </InputDiv>
             <InputDiv>
               <InputName>_message:</InputName>
-              <TextArea name="message" />
+              <TextArea
+                {...register("message", {
+                  required: "can't be empty",
+                })}
+                name="message"
+              />
             </InputDiv>
-            <SubmitButton onClick={() => setSent(true)}>
+            <SubmitButton type="submit" onClick={() => sendEmail}>
               submit-message
             </SubmitButton>
           </>
@@ -282,4 +315,10 @@ const ButtonNewMessage = styled.button`
   border-radius: 5px;
   background-color: #1c2b3a;
   margin: auto;
+`;
+const ErrorMessage = styled.p`
+  color: red;
+  font-size: 14px;
+  font-weight: 100;
+  margin-top: -7px;
 `;
