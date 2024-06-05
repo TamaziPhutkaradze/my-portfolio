@@ -12,30 +12,44 @@ export default function Footer() {
         transition={{ duration: 2 }}
         animate={{ opacity: 1 }}
       >
-        <FooterP>find me in:</FooterP>
-        <Twitter src={TwitterIcon} />
-        <FaceBook src={FbIcon} />
-        <Github src={GithubIcon} />
+        <div>
+          <FooterP>find me in:</FooterP>
+        </div>
+        <Sites>
+          <a href="https://x.com/TamaziPutk61978" target="_blank">
+            <Twitter src={TwitterIcon} />
+          </a>
+          <a
+            href="https://www.facebook.com/achi.futkaradze.186/"
+            target="_blank"
+          >
+            <FaceBook src={FbIcon} />
+          </a>
+          <a href="https://github.com/TamaziPhutkaradze" target="_blank">
+            <Github src={GithubIcon} />
+          </a>
+        </Sites>
       </Box>
     </FooterDiv>
   );
 }
 const FooterDiv = styled.footer`
   padding: 13px 0 15px 25px;
-  background-color: #011627;
+  background-color: rgba(1, 22, 39, 0.85);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   border: 1px solid rgb(30, 45, 61);
+  overflow: hidden;
 `;
 const Box = styled.div`
   display: flex;
   gap: 16px;
   opacity: 0;
+  justify-content: space-between;
 `;
 const FooterP = styled.p`
   font-size: 16px;
   color: #607b96;
-  border-right: 1px solid grey;
   padding-right: 65px;
 `;
 const Twitter = styled.img`
@@ -51,4 +65,8 @@ const FaceBook = styled.img`
 const Github = styled.img`
   padding-right: 16px;
   width: 32px;
+`;
+const Sites = styled.div`
+  display: flex;
+  gap: 16px;
 `;

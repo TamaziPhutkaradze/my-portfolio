@@ -115,7 +115,7 @@ export default function Projects() {
   );
 }
 const Wrapper = styled.div`
-  background-color: #011627;
+  background-color: rgba(1, 22, 39, 0.85);
   padding: 21px 0 38px;
   min-height: 100vh;
 `;

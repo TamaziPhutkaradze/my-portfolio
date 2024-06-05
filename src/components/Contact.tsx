@@ -7,6 +7,7 @@ import PhoneIcon from "../assets/phoneIcon.svg";
 import LinkIcon from "../assets/LinkIcon.svg";
 import emailjs from "@emailjs/browser";
 import { useForm } from "react-hook-form";
+
 interface inputTypes {
   email: string;
   message: string;
@@ -105,8 +106,8 @@ export default function Contact() {
               </LinkDiv>
             </a>
             <a
-              href="https://www.instagram.com/achi_phutkaradze/"
-              target="_blank"
+                href="https://www.instagram.com/achi_phutkaradze/"
+                target="_blank"
             >
               {" "}
               <LinkDiv>
@@ -173,8 +174,9 @@ export default function Contact() {
   );
 }
 const Wrapper = styled(motion.div)`
-  background-color: #011627;
+  background-color: rgba(1, 22, 39, 0.85);
   overflow: hidden auto;
+  height: 100vh;
 `;
 const PageTitle = styled.div`
   padding: 28px 21px;

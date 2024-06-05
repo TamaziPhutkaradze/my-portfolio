@@ -44,7 +44,7 @@ export default function Navbar() {
   );
 }
 const Main = styled.ul`
-  background: #011627;
+  background-color: rgba(1, 22, 39, 0.85);
   border: 1px solid rgb(30, 45, 61);
   height: 100vh;
 `;

@@ -52,7 +52,7 @@ export default function Navbar() {
   );
 }
 const Main = styled.div`
-  background: #011627;
+  background-color: rgba(1, 22, 39, 0.85);
   border: 1px solid rgb(30, 45, 61);
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;

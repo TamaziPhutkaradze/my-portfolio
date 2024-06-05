@@ -7,10 +7,10 @@ import { motion } from "framer-motion";
 import EmailIcon from "../assets/emailIcon.svg";
 import PhoneIcon from "../assets/phoneIcon.svg";
 export default function AboutMe() {
-  const [infoAccordionOpen, setAccordionOpen] = useState<boolean>(false);
+  const [infoAccordionOpen, setAccordionOpen] = useState<boolean>(true);
   const [contactAccordionOpen, setContactAccordionOpen] =
     useState<boolean>(false);
-  const [personalOpen, setPersonalOpen] = useState<boolean>(false);
+  const [personalOpen, setPersonalOpen] = useState<boolean>(true);
   const [professionalOpen, setProfessionalOpen] = useState<boolean>(false);
 
   return (
@@ -34,7 +34,7 @@ export default function AboutMe() {
             >
               <Personal
                 onClick={() => {
-                  setPersonalOpen(true);
+                  setPersonalOpen(!personalOpen);
                   setProfessionalOpen(false);
                 }}
               >
@@ -49,7 +49,7 @@ export default function AboutMe() {
               </Personal>
               <Professional
                 onClick={() => {
-                  setProfessionalOpen(true);
+                  setProfessionalOpen(!professionalOpen);
                   setPersonalOpen(false);
                 }}
               >
@@ -87,7 +87,7 @@ export default function AboutMe() {
               </EmailDiv>
               <PhoneNumber>
                 <img src={PhoneIcon} />
-                <NumberP>597-96-70-05</NumberP>
+                <NumberP>+(995) 597-96-70-05</NumberP>
               </PhoneNumber>
             </Box>
           )}
@@ -126,11 +126,12 @@ export default function AboutMe() {
   );
 }
 const Main = styled.div`
-  background-color: #011627;
+  background-color: rgba(1, 22, 39, 0.85);
 `;
 const Wrapper = styled.div`
-  padding: 21px 6px 38px 9px;
+  padding: 21px 0 38px;
   height: 100vh;
+  overflow: hidden auto;
 `;
 const PageName = styled.p`
   color: white;
