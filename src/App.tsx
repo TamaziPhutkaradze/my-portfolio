@@ -25,7 +25,7 @@ function App() {
   return (
     <>
       <Wrapper>
-        <Header />
+        <Header windowWidth={windowWidth} />
         <Routes>
           <Route element={<Hello windowWidth={windowWidth} />} path="/" />
           <Route element={<Navbar />} path="/navbar" />

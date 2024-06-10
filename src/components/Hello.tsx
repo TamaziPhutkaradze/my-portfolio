@@ -66,7 +66,7 @@ const Main = styled(motion.div)`
   padding-left: 27px;
   padding-bottom: 0;
   overflow: hidden;
-  height: 100vh;
+  height: calc(-50px + 95.8vh);
   display: flex;
   @media screen and (min-width: 1280px) {
     background-image: url(${bgImg});

@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 type Location = {
   pathname: string;
 };
-export default function Navbar() {
+export default function Navbar(props: { windowWidth: number }) {
   let location = useLocation();
   let locationPath = location.pathname;
   console.log(locationPath);
@@ -27,25 +27,44 @@ export default function Navbar() {
       transition={{ duration: 2 }}
       animate={{ paddingLeft: 27 }}
     >
-      <NameDiv>Tamazi-Phutkaradze</NameDiv>
-      {locationPath === "/navbar" ? (
-        <Link to={`${lastLocationPath}`}>
-          {" "}
-          <Close
-            as={motion.img}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 2 }}
-            src={CloseIcon}
-          />
-        </Link>
+      <PagesTitle>
+        <NameDiv>Tamazi-Phutkaradze</NameDiv>
+        {props.windowWidth > 1280 && (
+          <>
+            {" "}
+            <HelloPage><p>_hello</p></HelloPage>
+            <AboutMePage><p>_about-me</p></AboutMePage>{" "}
+            <ProjectsPage><p>_projects</p></ProjectsPage>
+          </>
+        )}
+      </PagesTitle>
+      {props.windowWidth < 1280 ? (
+        locationPath === "/navbar" ? (
+          <Link to={`${lastLocationPath}`}>
+            {" "}
+            <Close
+              as={motion.img}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 2 }}
+              src={CloseIcon}
+            />
+          </Link>
+        ) : (
+          <Link to={"/navbar"}>
+            <Menu
+              as={motion.img}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 2 }}
+              src={MenuIcon}
+            />
+          </Link>
+        )
       ) : (
-        <Link to={"/navbar"}>
-          <Menu
-            as={motion.img}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 2 }}
-            src={MenuIcon}
-          />
+        <Link to={"/contact"}>
+          <ContactPage>
+            {" "}
+            <p>_contact-me</p>
+          </ContactPage>
         </Link>
       )}
     </Main>
@@ -59,6 +78,11 @@ const Main = styled.div`
   padding: 17px 18px 18px 0px;
   display: flex;
   justify-content: space-between;
+  @media screen and (min-width: 1280px) {
+    padding: 0 18px;
+    align-items: center;
+    height: 52px;
+  }
 `;
 const NameDiv = styled.p`
   font-size: 16px;
@@ -70,4 +94,60 @@ const Menu = styled.img`
 `;
 const Close = styled.img`
   opacity: 0;
+`;
+const ContactPage = styled.div`
+  p {
+    font-size: 16px;
+    font-weight: 400;
+    color: #607b96;
+  }
+  border-left: 1px solid grey;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding-left: 18px;
+`;
+
+const HelloPage = styled.div`
+  p {
+    font-size: 16px;
+    font-weight: 400;
+    color: #607b96;
+  }
+  border-left: 1px solid grey;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding-left: 18px;
+  margin-left: 100px;
+`;
+const PagesTitle = styled.div`
+  display: flex;
+  align-items: center;
+`;
+const AboutMePage = styled.div`
+  p {
+    font-size: 16px;
+    font-weight: 400;
+    color: #607b96;
+  }
+  border-left: 1px solid grey;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding-left: 18px;
+  margin-left: 30px;
+`;
+const ProjectsPage = styled.div`
+  p {
+    font-size: 16px;
+    font-weight: 400;
+    color: #607b96;
+  }
+  border-left: 1px solid grey;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding-left: 18px;
+  margin-left: 30px;
 `;
