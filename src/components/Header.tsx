@@ -28,13 +28,27 @@ export default function Navbar(props: { windowWidth: number }) {
       animate={{ paddingLeft: 27 }}
     >
       <PagesTitle>
-        <NameDiv>Tamazi-Phutkaradze</NameDiv>
+        <NameDiv>
+          <p>Tamazi-Phutkaradze</p>
+        </NameDiv>
         {props.windowWidth > 1280 && (
           <>
             {" "}
-            <HelloPage><p>_hello</p></HelloPage>
-            <AboutMePage><p>_about-me</p></AboutMePage>{" "}
-            <ProjectsPage><p>_projects</p></ProjectsPage>
+            <Link to={"/"}>
+              <HelloPage location={locationPath}>
+                <p>_hello</p>
+              </HelloPage>
+            </Link>
+            <Link to={"AboutMe"}>
+              <AboutMePage location={locationPath}>
+                <p>_about-me</p>
+              </AboutMePage>{" "}
+            </Link>
+            <Link to={"Projects"}>
+              <ProjectsPage location={locationPath}>
+                <p>_projects</p>
+              </ProjectsPage>
+            </Link>
           </>
         )}
       </PagesTitle>
@@ -61,7 +75,7 @@ export default function Navbar(props: { windowWidth: number }) {
         )
       ) : (
         <Link to={"/contact"}>
-          <ContactPage>
+          <ContactPage location={locationPath}>
             {" "}
             <p>_contact-me</p>
           </ContactPage>
@@ -79,15 +93,19 @@ const Main = styled.div`
   display: flex;
   justify-content: space-between;
   @media screen and (min-width: 1280px) {
-    padding: 0 18px;
+    padding: 0;
+    padding-left: 18px;
     align-items: center;
     height: 52px;
   }
 `;
-const NameDiv = styled.p`
-  font-size: 16px;
-  color: #607b96;
-  font-weight: 400;
+const NameDiv = styled.div`
+  p {
+    font-size: 16px;
+    color: #607b96;
+    font-weight: 400;
+  }
+  padding-right: 100px;
 `;
 const Menu = styled.img`
   opacity: 0;
@@ -95,7 +113,7 @@ const Menu = styled.img`
 const Close = styled.img`
   opacity: 0;
 `;
-const ContactPage = styled.div`
+const ContactPage = styled.div<{ location: string }>`
   p {
     font-size: 16px;
     font-weight: 400;
@@ -105,10 +123,13 @@ const ContactPage = styled.div`
   height: 50px;
   display: flex;
   align-items: center;
-  padding-left: 18px;
+  border-bottom: ${(props) =>
+    props.location === "/contact" ? "1px solid #FEA55F" : ""};
+  justify-content: center;
+  width: 150px;
 `;
 
-const HelloPage = styled.div`
+const HelloPage = styled.div<{ location: string }>`
   p {
     font-size: 16px;
     font-weight: 400;
@@ -118,14 +139,16 @@ const HelloPage = styled.div`
   height: 50px;
   display: flex;
   align-items: center;
-  padding-left: 18px;
-  margin-left: 100px;
+  width: 125px;
+  border-bottom: ${(props) =>
+    props.location === "/" ? "1px solid #FEA55F" : ""};
+  justify-content: center;
 `;
 const PagesTitle = styled.div`
   display: flex;
   align-items: center;
 `;
-const AboutMePage = styled.div`
+const AboutMePage = styled.div<{ location: string }>`
   p {
     font-size: 16px;
     font-weight: 400;
@@ -135,10 +158,13 @@ const AboutMePage = styled.div`
   height: 50px;
   display: flex;
   align-items: center;
-  padding-left: 18px;
-  margin-left: 30px;
+  width: 125px;
+  text-align: center;
+  justify-content: center;
+  border-bottom: ${(props) =>
+    props.location === "/AboutMe" ? "1px solid #FEA55F" : ""};
 `;
-const ProjectsPage = styled.div`
+const ProjectsPage = styled.div<{ location: string }>`
   p {
     font-size: 16px;
     font-weight: 400;
@@ -148,6 +174,9 @@ const ProjectsPage = styled.div`
   height: 50px;
   display: flex;
   align-items: center;
-  padding-left: 18px;
-  margin-left: 30px;
+  width: 125px;
+  justify-content: center;
+  border-right: 1px solid grey;
+  border-bottom: ${(props) =>
+    props.location === "/Projects" ? "1px solid #FEA55F" : ""};
 `;
