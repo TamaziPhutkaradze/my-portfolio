@@ -34,7 +34,7 @@ export default function AboutMe() {
             >
               <Personal
                 onClick={() => {
-                  setPersonalOpen(!personalOpen);
+                  setPersonalOpen(true);
                   setProfessionalOpen(false);
                 }}
               >
@@ -49,7 +49,7 @@ export default function AboutMe() {
               </Personal>
               <Professional
                 onClick={() => {
-                  setProfessionalOpen(!professionalOpen);
+                  setProfessionalOpen(true);
                   setPersonalOpen(false);
                 }}
               >
@@ -132,17 +132,32 @@ const Wrapper = styled.div`
   padding: 21px 0 38px;
   height: 100vh;
   overflow: hidden auto;
+  @media screen and (min-width: 1280px) {
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+  }
 `;
 const PageName = styled.p`
   color: white;
   font-size: clamp(1rem, 2.5vw, 2rem);
   padding-left: 18px;
+  @media screen and (min-width: 1280px) {
+    position: absolute;
+    top: 70px;
+    font-size: clamp(0.5rem, 2.5vw, 1rem);
+  }
 `;
 const List = styled.div`
   padding-top: 29px;
   display: flex;
   flex-direction: column;
   gap: 3px;
+  @media screen and (min-width: 1280px) {
+    width: 130%;
+    border-right: 1px solid rgb(30, 45, 61);
+    padding-top: 40px;
+  }
 `;
 const Info = styled.button`
   background-color: #1e2d3d;
@@ -224,14 +239,24 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 17px;
+  @media screen and (min-width: 1280px) {
+    padding: 0;
+  }
 `;
 const ParagraphTitle = styled.p`
   color: white;
   font-size: 16px;
+  @media screen and (min-width: 1280px) {
+    padding: 20px 0 0 15px;
+  }
 `;
 const TextAboutMe = styled.div`
   font-size: 16px;
   color: #607b96;
+  @media screen and (min-width: 1280px) {
+    border-top: 1px solid rgb(30, 45, 61);
+    padding: 20px 15px;
+  }
 `;
 const PersonalArrow = styled(motion.img)<{ isPersonalOpen: boolean }>`
   transform: ${(props) =>
