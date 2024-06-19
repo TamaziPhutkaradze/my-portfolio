@@ -28,36 +28,40 @@ export default function Projects() {
   console.log(filterData);
   return (
     <Wrapper>
-      <PageTitleDiv animate={{ paddingLeft: 27 }} transition={{ duration: 2 }}>
-        <PageTitle>_projects</PageTitle>
-      </PageTitleDiv>
-      <Btn
-        onClick={() => setProjectsOpen(!projectsOpen)}
-        animate={{ marginTop: 29 }}
-        transition={{ duration: 2 }}
-      >
-        <ArrowImg
-          src={Arrow}
-          btnClicked={projectsOpen}
-          transition={{ duration: 0.7 }}
-          animate={{ rotate: projectsOpen ? 90 : 0 }}
-        />
-        <BtnName>Tech Stacks</BtnName>
-      </Btn>
-      {projectsOpen ? (
-        <TechStacksList
-          animate={{ paddingTop: 16 }}
+      <ProjectFilterForDesk>
+        <PageTitleDiv
+          animate={{ paddingLeft: 27 }}
           transition={{ duration: 2 }}
         >
-          {data.TechStack.map((item, index) => {
-            return (
-              <FirstLabel key={index}>
-                <input
-                  type="checkbox"
-                  value={item}
-                  checked={selectedItems.includes(item)}
-                  onChange={handleChange}
-                  className="
+          <PageTitle>_projects</PageTitle>
+        </PageTitleDiv>
+        <Btn
+          onClick={() => setProjectsOpen(!projectsOpen)}
+          animate={{ marginTop: 29 }}
+          transition={{ duration: 2 }}
+        >
+          <ArrowImg
+            src={Arrow}
+            btnClicked={projectsOpen}
+            transition={{ duration: 0.7 }}
+            animate={{ rotate: projectsOpen ? 90 : 0 }}
+          />
+          <BtnName>Tech Stacks</BtnName>
+        </Btn>
+        {projectsOpen ? (
+          <TechStacksList
+            animate={{ paddingTop: 16 }}
+            transition={{ duration: 2 }}
+          >
+            {data.TechStack.map((item, index) => {
+              return (
+                <FirstLabel key={index}>
+                  <input
+                    type="checkbox"
+                    value={item}
+                    checked={selectedItems.includes(item)}
+                    onChange={handleChange}
+                    className="
                   peer
                   relative 
                   appearance-none 
@@ -71,46 +75,56 @@ export default function Projects() {
                   bg-no-repeat
                   bg-center
                   "
-                />
-                <TechName key={index}>{item}</TechName>
-              </FirstLabel>
+                  />
+                  <TechName key={index}>{item}</TechName>
+                </FirstLabel>
+              );
+            })}
+          </TechStacksList>
+        ) : (
+          ""
+        )}
+      </ProjectFilterForDesk>
+      <DesktopVersionDiv>
+        <ProjectsContainer>
+          <SelectedTechStacks
+            animate={{ opacity: 1 }}
+            transition={{ duration: 2 }}
+          >
+            // projects /
+            {selectedItems.length < 1
+              ? "All"
+              : selectedItems.map((item: string, index: number) => {
+                  return <Names key={index}>{item},</Names>;
+                })}
+          </SelectedTechStacks>
+        </ProjectsContainer>
+        <CardsContainer>
+          {filterData.map((item) => {
+            return (
+              <div
+                key={item.id}
+                style={{
+                  display: "flex",
+                  gap: "20px",
+                  flexDirection: "column",
+                }}
+              >
+                <ProjectNum>project {item.id}</ProjectNum>
+                <Card animate={{ opacity: 1 }} transition={{ duration: 2 }}>
+                  <ImgDiv>
+                    <ProjectImg src={item.img} />
+                  </ImgDiv>
+                  <Line /> <ProjectTitle>{item.name}</ProjectTitle>
+                  <a href={item.live} target="_blank">
+                    <LiveButton>view-project</LiveButton>{" "}
+                  </a>{" "}
+                </Card>
+              </div>
             );
           })}
-        </TechStacksList>
-      ) : (
-        ""
-      )}
-      <ProjectsContainer>
-        <SelectedTechStacks
-          animate={{ opacity: 1 }}
-          transition={{ duration: 2 }}
-        >
-          // projects /
-          {selectedItems.length < 1
-            ? "All"
-            : selectedItems.map((item: string, index: number) => {
-                return <Names key={index}>{item}</Names>;
-              })}
-        </SelectedTechStacks>
-      </ProjectsContainer>
-      <CardsContainer>
-        {filterData.map((item) => {
-          return (
-            <div key={item.id}>
-              <ProjectNum>project {item.id}</ProjectNum>
-              <Card animate={{ opacity: 1 }} transition={{ duration: 2 }}>
-                <ImgDiv>
-                  <ProjectImg src={item.img} />
-                </ImgDiv>
-                <Line /> <ProjectTitle>{item.name}</ProjectTitle>
-                <a href={item.live} target="_blank">
-                  <LiveButton>view-project</LiveButton>{" "}
-                </a>{" "}
-              </Card>
-            </div>
-          );
-        })}
-      </CardsContainer>
+        </CardsContainer>
+      </DesktopVersionDiv>
     </Wrapper>
   );
 }
@@ -118,6 +132,10 @@ const Wrapper = styled.div`
   background-color: rgba(1, 22, 39, 0.85);
   padding: 21px 0 38px;
   min-height: 100vh;
+  @media screen and (min-width: 1280px) {
+    display: flex;
+    padding: 0;
+  }
 `;
 const PageTitleDiv = styled(motion.div)``;
 const PageTitle = styled.h1`
@@ -143,6 +161,10 @@ const ArrowImg = styled(motion.img)<{ btnClicked: boolean }>`
 `;
 const ProjectsContainer = styled.div`
   padding: 38px 27px 0;
+  @media screen and (min-width: 1280px) {
+    border-bottom: 1px solid rgb(30, 45, 61);
+    padding: 21px 27px;
+  }
 `;
 const SelectedTechStacks = styled(motion.div)`
   color: white;
@@ -165,7 +187,10 @@ const FirstLabel = styled.label`
 const TechName = styled.p`
   color: white;
   font-size: 16px;
-  font-weight: 2 00;
+  font-weight: 200;
+  @media screen and (min-width: 1280px) {
+    font-size: 20px;
+  }
 `;
 const Names = styled.div`
   padding-left: 10px;
@@ -175,6 +200,14 @@ const CardsContainer = styled.div`
   flex-direction: column;
   padding-left: 27px;
   padding-right: 42px;
+  @media screen and (min-width: 1280px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    padding: 0;
+    padding-bottom: 40px;
+  }
 `;
 const ProjectNum = styled.h1`
   padding-top: 17px;
@@ -189,12 +222,18 @@ const Card = styled(motion.div)`
   margin: auto;
   margin-top: 15px;
   opacity: 0;
+  @media screen and (min-width: 1280px) {
+    margin: 0;
+  }
 `;
 const ProjectImg = styled.img`
   width: 100%;
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
   min-width: 281px;
+  @media screen and (min-width: 1280px) {
+    height: 290px;
+  }
 `;
 const ImgDiv = styled.div``;
 const Line = styled.hr`
@@ -215,4 +254,16 @@ const LiveButton = styled.button`
   border-radius: 10px;
   font-size: 14px;
   margin: 23px;
+`;
+const DesktopVersionDiv = styled.div`
+  @media screen and (min-width: 1280px) {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+`;
+const ProjectFilterForDesk = styled.div`
+  border-right: 1px solid rgb(30, 45, 61);
+  min-width: 300px;
+  padding-top: 21px;
 `;
