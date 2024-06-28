@@ -31,7 +31,7 @@ export default function Navbar(props: { windowWidth: number }) {
         <NameDiv>
           <p>Tamazi-Phutkaradze</p>
         </NameDiv>
-        {props.windowWidth > 1280 && (
+        {props.windowWidth >= 1280 && (
           <>
             {" "}
             <Link to={"/"}>
@@ -52,7 +52,7 @@ export default function Navbar(props: { windowWidth: number }) {
           </>
         )}
       </PagesTitle>
-      {props.windowWidth < 1280 ? (
+      {props.windowWidth <= 1279 ? (
         locationPath === "/navbar" ? (
           <Link to={`${lastLocationPath}`}>
             {" "}
@@ -85,7 +85,7 @@ export default function Navbar(props: { windowWidth: number }) {
   );
 }
 const Main = styled.div`
-  background-color: rgba(1, 22, 39, 0.85);
+  background-color: rgb(1, 22, 39);
   border: 1px solid rgb(30, 45, 61);
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -119,7 +119,7 @@ const ContactPage = styled.div<{ location: string }>`
     font-weight: 400;
     color: #607b96;
   }
-  border-left: 1px solid grey;
+  border-left: 1px solid rgb(30, 45, 61);
   height: 50px;
   display: flex;
   align-items: center;
@@ -135,7 +135,7 @@ const HelloPage = styled.div<{ location: string }>`
     font-weight: 400;
     color: #607b96;
   }
-  border-left: 1px solid grey;
+  border-left: 1px solid rgb(30, 45, 61);
   height: 50px;
   display: flex;
   align-items: center;
@@ -154,7 +154,7 @@ const AboutMePage = styled.div<{ location: string }>`
     font-weight: 400;
     color: #607b96;
   }
-  border-left: 1px solid grey;
+  border-left: 1px solid rgb(30, 45, 61);
   height: 50px;
   display: flex;
   align-items: center;
@@ -170,13 +170,13 @@ const ProjectsPage = styled.div<{ location: string }>`
     font-weight: 400;
     color: #607b96;
   }
-  border-left: 1px solid grey;
+  border-left: 1px solid rgb(30, 45, 61);
   height: 50px;
   display: flex;
   align-items: center;
   width: 125px;
   justify-content: center;
-  border-right: 1px solid grey;
+  border-right: 1px solid rgb(30, 45, 61);
   border-bottom: ${(props) =>
     props.location === "/Projects" ? "1px solid #FEA55F" : ""};
 `;

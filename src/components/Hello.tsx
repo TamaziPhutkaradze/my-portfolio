@@ -59,7 +59,7 @@ export default function Hello(props: { windowWidth: number }) {
 }
 const Main = styled(motion.div)`
   width: 100%;
-  background-color: rgba(1, 22, 39, 0.85);
+  background-color: rgb(1, 22, 39);
   border: 1px solid rgb(30, 45, 61);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;

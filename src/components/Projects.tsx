@@ -129,7 +129,7 @@ export default function Projects() {
   );
 }
 const Wrapper = styled.div`
-  background-color: rgba(1, 22, 39, 0.85);
+  background-color: rgb(1, 22, 39);
   padding: 21px 0 38px;
   min-height: 100vh;
   @media screen and (min-width: 1280px) {

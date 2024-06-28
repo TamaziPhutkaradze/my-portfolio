@@ -35,7 +35,7 @@ export default function Footer() {
 }
 const FooterDiv = styled.footer`
   padding: 13px 0 15px 25px;
-  background-color: rgba(1, 22, 39, 0.85);
+  background-color: rgb(1, 22, 39);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   border: 1px solid rgb(30, 45, 61);

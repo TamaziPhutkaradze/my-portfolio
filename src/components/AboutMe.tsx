@@ -126,7 +126,7 @@ export default function AboutMe() {
   );
 }
 const Main = styled.div`
-  background-color: rgba(1, 22, 39, 0.85);
+  background-color: rgb(1, 22, 39);
 `;
 const Wrapper = styled.div`
   padding: 21px 0 38px;
@@ -144,7 +144,7 @@ const PageName = styled.p`
   padding-left: 18px;
   @media screen and (min-width: 1280px) {
     position: absolute;
-    top: 70px;
+    top: 85 px;
     font-size: clamp(0.5rem, 2.5vw, 1rem);
   }
 `;

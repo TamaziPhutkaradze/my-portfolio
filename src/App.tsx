@@ -31,7 +31,10 @@ function App() {
           <Route element={<Navbar />} path="/navbar" />
           <Route element={<AboutMe />} path="/AboutMe" />
           <Route element={<Projects />} path="/Projects" />
-          <Route element={<Contact />} path="/Contact" />
+          <Route
+            element={<Contact windowWidth={windowWidth} />}
+            path="/Contact"
+          />
         </Routes>
         {locationUrl === "/" && windowWidth < 1280 ? "" : <Footer />}
       </Wrapper>
