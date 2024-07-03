@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { animate, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import CodeImg2 from "../assets/DesktopImgs/mainPageImg-2.svg";
 import CodeImg3 from "../assets/DesktopImgs/mainPageImg-3.svg";
 import CodeImg4 from "../assets/DesktopImgs/mainPageImg-4.svg";
@@ -53,10 +53,10 @@ export default function Hello(props: { windowWidth: number }) {
       x: "50%",
     },
   };
-    const pageTransition = {
-      type: "spring",
-      duration: 5,
-    };
+  const pageTransition = {
+    type: "spring",
+    duration: 5,
+  };
 
   return (
     <>

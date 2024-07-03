@@ -39,7 +39,20 @@ export default function Navbar(props: { windowWidth: number }) {
     type: "spring",
     duration: 5,
   };
-
+  const ContactDivVariants = {
+    initial: {
+      opacity: 0,
+      y: "-100%",
+    },
+    in: {
+      opacity: 1,
+      y: "0%",
+    },
+    out: {
+      opacity: 0,
+      y: "50%",
+    },
+  };
   return (
     <Main>
       <PagesTitle
@@ -96,7 +109,14 @@ export default function Navbar(props: { windowWidth: number }) {
         )
       ) : (
         <Link to={"/contact"}>
-          <ContactPage location={locationPath}>
+          <ContactPage
+            location={locationPath}
+            as={motion.div}
+            initial="initial"
+            animate="in"
+            variants={ContactDivVariants}
+            transition={pageTransition}
+          >
             {" "}
             <p>_contact-me</p>
           </ContactPage>

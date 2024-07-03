@@ -35,7 +35,7 @@ export default function Footer() {
         variants={footerVariants}
         transition={transition}
       >
-        <div>
+        <div style={{ display: "flex", alignItems: "center" }}>
           <FooterP>find me in:</FooterP>
         </div>
         <Sites>
@@ -57,7 +57,7 @@ export default function Footer() {
   );
 }
 const FooterDiv = styled.footer`
-  padding: 13px 0 15px 25px;
+  padding: 0 0 0 25px;
   background-color: rgb(1, 22, 39);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
@@ -74,20 +74,35 @@ const FooterP = styled.p`
   font-size: 16px;
   color: #607b96;
   padding-right: 65px;
+  @media screen and (min-width: 1280px) {
+    font-size: 21px;
+  }
 `;
 const Twitter = styled.img`
-  border-right: 1px solid grey;
+  border-right: 1px solid rgb(30, 45, 61);
   padding-right: 16px;
   width: 32px;
+  height: 50px;
+  @media screen and (min-width: 1280px) {
+    width: 45px;
+  }
 `;
 const FaceBook = styled.img`
-  border-right: 1px solid grey;
+  border-right: 1px solid rgb(30, 45, 61);
   padding-right: 16px;
   width: 25px;
+  height: 50px;
+  @media screen and (min-width: 1280px) {
+    width: 32px;
+  }
 `;
 const Github = styled.img`
   padding-right: 16px;
   width: 32px;
+  height: 50px;
+  @media screen and (min-width: 1280px) {
+    width: 45px;
+  }
 `;
 const Sites = styled.div`
   display: flex;
