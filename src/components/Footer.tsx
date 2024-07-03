@@ -5,12 +5,35 @@ import GithubIcon from "../assets/githubIcon.svg";
 import { motion } from "framer-motion";
 
 export default function Footer() {
+  const footerVariants = {
+    initial: {
+      opacity: 0,
+      x: "-100%",
+    },
+    in: {
+      opacity: 1,
+      x: "0%",
+    },
+    out: {
+      opacity: 0,
+      x: "50%",
+    },
+  };
+  const transition = {
+    type: "spring",
+    duration: 5,
+  };
   return (
     <FooterDiv>
       <Box
         as={motion.div}
-        transition={{ duration: 2 }}
-        animate={{ opacity: 1 }}
+        // transition={{ duration: 2 }}
+        // animate={{ opacity: 1 }}
+        initial="initial"
+        animate="in"
+        exit="out"
+        variants={footerVariants}
+        transition={transition}
       >
         <div>
           <FooterP>find me in:</FooterP>

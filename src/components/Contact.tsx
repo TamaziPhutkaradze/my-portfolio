@@ -63,10 +63,9 @@ export default function Contact(props: { windowWidth: number }) {
     "Nov",
     "Dec",
   ];
-  console.log(weekDay);
   const currentMonth = monthNames[month];
   const currentWeekDay = WeekDaysNames[weekDay];
-  console.log(currentMonth, "თვე", currentWeekDay, "დღე");
+ 
 
   return (
     <Wrapper

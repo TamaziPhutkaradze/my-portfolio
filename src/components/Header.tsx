@@ -21,13 +21,34 @@ export default function Navbar(props: { windowWidth: number }) {
     }
     setLastLocation(location);
   }, [location]);
+  const variants = {
+    initial: {
+      opacity: 0,
+      x: "-100%",
+    },
+    in: {
+      opacity: 1,
+      x: "0%",
+    },
+    out: {
+      opacity: 0,
+      x: "50%",
+    },
+  };
+  const pageTransition = {
+    type: "spring",
+    duration: 5,
+  };
+
   return (
-    <Main
-      as={motion.div}
-      transition={{ duration: 2 }}
-      animate={{ paddingLeft: 27 }}
-    >
-      <PagesTitle>
+    <Main>
+      <PagesTitle
+        initial="initial"
+        animate="in"
+        exit="out"
+        variants={variants}
+        transition={pageTransition}
+      >
         <NameDiv>
           <p>Tamazi-Phutkaradze</p>
         </NameDiv>
@@ -85,11 +106,12 @@ export default function Navbar(props: { windowWidth: number }) {
   );
 }
 const Main = styled.div`
+  overflow: hidden;
   background-color: rgb(1, 22, 39);
   border: 1px solid rgb(30, 45, 61);
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  padding: 17px 18px 18px 0px;
+  padding: 17px 18px 18px;
   display: flex;
   justify-content: space-between;
   @media screen and (min-width: 1280px) {
@@ -144,7 +166,7 @@ const HelloPage = styled.div<{ location: string }>`
     props.location === "/" ? "1px solid #FEA55F" : ""};
   justify-content: center;
 `;
-const PagesTitle = styled.div`
+const PagesTitle = styled(motion.div)`
   display: flex;
   align-items: center;
 `;

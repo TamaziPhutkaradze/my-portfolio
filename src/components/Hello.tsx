@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { motion } from "framer-motion";
+import { animate, motion } from "framer-motion";
 import CodeImg2 from "../assets/DesktopImgs/mainPageImg-2.svg";
 import CodeImg3 from "../assets/DesktopImgs/mainPageImg-3.svg";
 import CodeImg4 from "../assets/DesktopImgs/mainPageImg-4.svg";
@@ -7,6 +7,57 @@ import bgImg from "../assets/DesktopImgs/bg-color-desktop.png";
 
 export default function Hello(props: { windowWidth: number }) {
   console.log(props.windowWidth);
+  const textDivVariants = {
+    initial: {
+      opacity: 0,
+      x: "-100%",
+    },
+    in: {
+      opacity: 1,
+      x: "0%",
+    },
+    out: {
+      opacity: 0,
+      x: "50%",
+    },
+  };
+  const mobileVariants = {
+    initial: { opacity: 0, x: "100%" },
+    in: { opacity: 1, x: "0%" },
+    out: { opacity: 0, x: "50%" },
+  };
+
+  const desktopVariants = {
+    initial: { opacity: 0, x: 100 },
+    in: { opacity: 1, x: 0 },
+    out: { opacity: 0, x: 50 },
+  };
+
+  const combinedAnimate = {
+    opacity: 1,
+    paddingTop: props.windowWidth > 1280 ? 0 : 96,
+    x: props.windowWidth > 1280 ? desktopVariants.in.x : mobileVariants.in.x,
+  };
+  //Images animation
+  const variantsForImages = {
+    initial: {
+      opacity: 0,
+      x: "100%",
+    },
+    in: {
+      opacity: 1,
+      x: "0%",
+    },
+    out: {
+      opacity: 0,
+      x: "50%",
+    },
+  };
+    const pageTransition = {
+      type: "spring",
+      duration: 5,
+    };
+
   return (
     <>
       <Main
@@ -16,17 +67,24 @@ export default function Hello(props: { windowWidth: number }) {
         <ForDesktopVersion>
           <TextDiv
             as={motion.div}
-            transition={{ duration: 2 }}
-            animate={{
-              paddingTop: props.windowWidth < 1280 ? 96 : 0,
-              opacity: 1,
-            }}
+            initial="initial"
+            animate={combinedAnimate}
+            exit="out"
+            variants={textDivVariants}
+            transition={pageTransition}
           >
             <Hi>Hi all. I am</Hi>
             <Name>Tamazi Phutkaradze</Name>
             <Role> &gt; Front-end developer</Role>
           </TextDiv>
-          <Github>
+          <Github
+            as={motion.div}
+            initial="initial"
+            animate="in"
+            exit="out"
+            variants={textDivVariants}
+            transition={pageTransition}
+          >
             <Find>// find my profile on Github:</Find>
             <GithubLink>
               <span style={{ color: "#4D5BCE" }}>const</span>{" "}
@@ -43,11 +101,11 @@ export default function Hello(props: { windowWidth: number }) {
         </ForDesktopVersion>
         <CodeImgs
           as={motion.div}
-          transition={{ duration: 2 }}
-          animate={{
-            paddingTop: 0,
-            opacity: 1,
-          }}
+          initial="initial"
+          animate="in"
+          exit="out"
+          variants={variantsForImages}
+          transition={pageTransition}
         >
           <img src={CodeImg2} />
           <img src={CodeImg3} />
@@ -134,7 +192,7 @@ const ForDesktopVersion = styled.div`
   @media screen and (min-width: 1280px) {
     justify-content: stretch;
     gap: 60px;
-    padding-top: 100px;
+    padding-top: 60px;
   }
 `;
 const CodeImgs = styled.div`
