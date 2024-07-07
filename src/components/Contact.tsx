@@ -65,8 +65,19 @@ export default function Contact(props: { windowWidth: number }) {
   ];
   const currentMonth = monthNames[month];
   const currentWeekDay = WeekDaysNames[weekDay];
- 
 
+  const variants = {
+    initial: {
+      y: "-100%",
+    },
+    in: {
+      y: "0%",
+    },
+  };
+  const transition = {
+    type: "spring",
+    duration: 5,
+  };
   return (
     <Wrapper
       initial={{ opacity: 0 }}
@@ -74,178 +85,198 @@ export default function Contact(props: { windowWidth: number }) {
       transition={{ duration: 2 }}
     >
       <ButtonsDiv>
-        <PageTitle>_contact</PageTitle>
-        <Buttons>
-          <Contacts onClick={() => setContactIsOpen(!contactIsOpen)}>
-            <ArrowImg
-              src={Arrow}
-              open={contactIsOpen}
-              animate={{ rotate: contactIsOpen ? 90 : 0 }}
-              transition={{ duration: 0.7 }}
-            />
-            <BtnName>Contacts</BtnName>
-          </Contacts>
-          {contactIsOpen && (
-            <Box>
-              <EmailDiv
-                as={motion.div}
+        <motion.div
+          style={{ display: "flex", flexDirection: "column" }}
+          initial="initial"
+          animate="in"
+          variants={variants}
+          transition={transition}
+        >
+          <PageTitle>_contact</PageTitle>
+          <Buttons>
+            <Contacts onClick={() => setContactIsOpen(!contactIsOpen)}>
+              <ArrowImg
+                src={Arrow}
+                open={contactIsOpen}
+                animate={{ rotate: contactIsOpen ? 90 : 0 }}
+                transition={{ duration: 0.7 }}
+              />
+              <BtnName>Contacts</BtnName>
+            </Contacts>
+            {contactIsOpen && (
+              <Box>
+                <EmailDiv
+                  as={motion.div}
+                  transition={{ duration: 2 }}
+                  initial={{ paddingTop: 0 }}
+                  animate={{ paddingTop: 16 }}
+                >
+                  <EmailImg src={EmailIcon} />
+                  <Email>achifutkaradze9@gmail.com</Email>
+                </EmailDiv>
+                <PhoneNumber>
+                  <img src={PhoneIcon} />
+                  <NumberP>+(995) 597-96-70-05</NumberP>
+                </PhoneNumber>
+              </Box>
+            )}
+            <FindMe onClick={() => setSecondBtnIsOpen(!secondBtnIsOpen)}>
+              <ArrowImg
+                src={Arrow}
+                open={secondBtnIsOpen}
+                animate={{ rotate: secondBtnIsOpen ? 90 : 0 }}
+                transition={{ duration: 0.7 }}
+              />
+              <BtnName>find-me-also-in</BtnName>
+            </FindMe>
+            {secondBtnIsOpen && (
+              <Socials
+                animate={{ paddingLeft: 27 }}
                 transition={{ duration: 2 }}
-                initial={{ paddingTop: 0 }}
-                animate={{ paddingTop: 16 }}
               >
-                <EmailImg src={EmailIcon} />
-                <Email>achifutkaradze9@gmail.com</Email>
-              </EmailDiv>
-              <PhoneNumber>
-                <img src={PhoneIcon} />
-                <NumberP>+(995) 597-96-70-05</NumberP>
-              </PhoneNumber>
-            </Box>
-          )}
-          <FindMe onClick={() => setSecondBtnIsOpen(!secondBtnIsOpen)}>
-            <ArrowImg
-              src={Arrow}
-              open={secondBtnIsOpen}
-              animate={{ rotate: secondBtnIsOpen ? 90 : 0 }}
-              transition={{ duration: 0.7 }}
-            />
-            <BtnName>find-me-also-in</BtnName>
-          </FindMe>
-          {secondBtnIsOpen && (
-            <Socials animate={{ paddingLeft: 27 }} transition={{ duration: 2 }}>
-              <a
-                href="https://www.linkedin.com/in/achiphutkaradze/"
-                target="_blank"
-              >
-                {" "}
-                <LinkDiv>
-                  <img src={LinkIcon} /> Linkedin
-                </LinkDiv>
-              </a>{" "}
-              <a
-                href="https://www.facebook.com/achi.futkaradze.186/"
-                target="_blank"
-              >
-                {" "}
-                <LinkDiv>
-                  <img src={LinkIcon} />
-                  Facebook
-                </LinkDiv>
-              </a>
-              <a
-                href="https://www.instagram.com/achi_phutkaradze/"
-                target="_blank"
-              >
-                {" "}
-                <LinkDiv>
-                  <img src={LinkIcon} />
-                  Instagram
-                </LinkDiv>
-              </a>
-            </Socials>
-          )}
-        </Buttons>
+                <a
+                  href="https://www.linkedin.com/in/achiphutkaradze/"
+                  target="_blank"
+                >
+                  {" "}
+                  <LinkDiv>
+                    <img src={LinkIcon} /> Linkedin
+                  </LinkDiv>
+                </a>{" "}
+                <a
+                  href="https://www.facebook.com/achi.futkaradze.186/"
+                  target="_blank"
+                >
+                  {" "}
+                  <LinkDiv>
+                    <img src={LinkIcon} />
+                    Facebook
+                  </LinkDiv>
+                </a>
+                <a
+                  href="https://www.instagram.com/achi_phutkaradze/"
+                  target="_blank"
+                >
+                  {" "}
+                  <LinkDiv>
+                    <img src={LinkIcon} />
+                    Instagram
+                  </LinkDiv>
+                </a>
+              </Socials>
+            )}
+          </Buttons>
+        </motion.div>
       </ButtonsDiv>
       <InputsAndTextsDiv>
-        <TextsContainer onSubmit={handleSubmit(sendEmail)} ref={form}>
-          {sent === false ? (
-            <>
-              <InputDiv>
-                <InputName>_name:</InputName>
-                <Input
-                  {...register("name", {
-                    required: "can't be empty",
-                  })}
-                  name="name"
-                />
-              </InputDiv>
-              <InputDiv>
-                <InputName>_email:</InputName>
-                <Input
-                  {...register("email", {
-                    required: "can't be empty",
-                    pattern: {
-                      value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                      message: "enter valid email",
-                    },
-                  })}
-                  name="email"
-                />
-                <ErrorMessage>{errors.email?.message}</ErrorMessage>
-              </InputDiv>
-              <InputDiv>
-                <InputName>_message:</InputName>
-                <TextArea
-                  {...register("message", {
-                    required: "can't be empty",
-                  })}
-                  name="message"
-                />
-              </InputDiv>
-              <SubmitButton type="submit" onClick={() => sendEmail}>
-                submit-message
-              </SubmitButton>
-            </>
-          ) : (
-            <TextBox>
-              <Thank>Thank you! 🤘</Thank>{" "}
-              <AcceptedMessage>
-                Your message has been accepted. You will recieve answer really
-                soon!
-              </AcceptedMessage>
-              <ButtonNewMessage onClick={() => setSent(false)}>
-                send-new-message
-              </ButtonNewMessage>
-            </TextBox>
-          )}
-        </TextsContainer>
-        {props.windowWidth >= 1280 ? (
-          <SendTexts>
-            <ButtonAn>
-              <span style={{ color: "#C98BDF" }}>const </span> button =
-              document.querySelectors (
-              <span style={{ color: "#FEA55F" }}>'#sendBtn'</span>);
-            </ButtonAn>
-            <MessageAn>
-              <span>
-                <span style={{ color: "#C98BDF" }}>const</span> message = &#123;
-              </span>{" "}
-              <br />
-              <span>
-                name:{" "}
-                <span style={{ color: "#FEA55F" }}>
-                  {nameInputValue.length > 0 ? nameInputValue : "''"}
+        <MotionDiv
+          initial="initial"
+          animate="in"
+          variants={variants}
+          transition={transition}
+        >
+          <TextsContainer onSubmit={handleSubmit(sendEmail)} ref={form}>
+            {sent === false ? (
+              <>
+                <InputDiv>
+                  <InputName>_name:</InputName>
+                  <Input
+                    {...register("name", {
+                      required: "can't be empty",
+                    })}
+                    name="name"
+                  />
+                </InputDiv>
+                <InputDiv>
+                  <InputName>_email:</InputName>
+                  <Input
+                    {...register("email", {
+                      required: "can't be empty",
+                      pattern: {
+                        value:
+                          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                        message: "enter valid email",
+                      },
+                    })}
+                    name="email"
+                  />
+                  <ErrorMessage>{errors.email?.message}</ErrorMessage>
+                </InputDiv>
+                <InputDiv>
+                  <InputName>_message:</InputName>
+                  <TextArea
+                    {...register("message", {
+                      required: "can't be empty",
+                    })}
+                    name="message"
+                  />
+                </InputDiv>
+                <SubmitButton type="submit" onClick={() => sendEmail}>
+                  submit-message
+                </SubmitButton>
+              </>
+            ) : (
+              <TextBox>
+                <Thank>Thank you! 🤘</Thank>{" "}
+                <AcceptedMessage>
+                  Your message has been accepted. You will recieve answer really
+                  soon!
+                </AcceptedMessage>
+                <ButtonNewMessage onClick={() => setSent(false)}>
+                  send-new-message
+                </ButtonNewMessage>
+              </TextBox>
+            )}
+          </TextsContainer>
+          {props.windowWidth >= 1280 ? (
+            <SendTexts>
+              <ButtonAn>
+                <span style={{ color: "#C98BDF" }}>const </span> button =
+                document.querySelectors (
+                <span style={{ color: "#FEA55F" }}>'#sendBtn'</span>);
+              </ButtonAn>
+              <MessageAn>
+                <span>
+                  <span style={{ color: "#C98BDF" }}>const</span> message =
+                  &#123;
+                </span>{" "}
+                <br />
+                <span>
+                  name:{" "}
+                  <span style={{ color: "#FEA55F" }}>
+                    {nameInputValue.length > 0 ? nameInputValue : "''"}
+                  </span>
                 </span>
-              </span>
-              <br />
-              email:
-              <span style={{ color: "#FEA55F" }}>
-                {emailInputValue.length > 0 ? emailInputValue : "''"}
-              </span>
-              ,
-              <br />
-              message:
-              <span style={{ color: "#FEA55F" }}>
-                {messageInputValue.length > 0 ? messageInputValue : "''"}
-              </span>
-              ,
-              <br />
-              date:{" "}
-              <span style={{ color: "#FEA55F" }}>
-                {currentWeekDay} {monthDate} {currentMonth}
-              </span>
-              <br />
-              &#125;
-            </MessageAn>
-            <AddEventAn>
-              button.addEventListener({" "}
-              <span style={{ color: "#FEA55F" }}>'click'</span>, () &#61;&#62;
-              &#123; form.send &#40;message&#41; <br /> &#125;)
-            </AddEventAn>
-          </SendTexts>
-        ) : (
-          ""
-        )}
+                <br />
+                email:
+                <span style={{ color: "#FEA55F" }}>
+                  {emailInputValue.length > 0 ? emailInputValue : "''"}
+                </span>
+                ,
+                <br />
+                message:
+                <span style={{ color: "#FEA55F" }}>
+                  {messageInputValue.length > 0 ? messageInputValue : "''"}
+                </span>
+                ,
+                <br />
+                date:{" "}
+                <span style={{ color: "#FEA55F" }}>
+                  {currentWeekDay} {monthDate} {currentMonth}
+                </span>
+                <br />
+                &#125;
+              </MessageAn>
+              <AddEventAn>
+                button.addEventListener({" "}
+                <span style={{ color: "#FEA55F" }}>'click'</span>, () &#61;&#62;
+                &#123; form.send &#40;message&#41; <br /> &#125;)
+              </AddEventAn>
+            </SendTexts>
+          ) : (
+            ""
+          )}
+        </MotionDiv>
       </InputsAndTextsDiv>
     </Wrapper>
   );
@@ -442,5 +473,13 @@ const InputsAndTextsDiv = styled.div`
   @media screen and (min-width: 1280px) {
     display: flex;
     width: 100%;
+  }
+`;
+const MotionDiv = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  @media screen and (min-width: 1280px) {
+    flex-direction: row;
   }
 `;

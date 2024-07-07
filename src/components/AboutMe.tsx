@@ -12,88 +12,135 @@ export default function AboutMe() {
     useState<boolean>(false);
   const [personalOpen, setPersonalOpen] = useState<boolean>(true);
   const [professionalOpen, setProfessionalOpen] = useState<boolean>(false);
-
+  const textVariants = {
+    initial: {
+      x: "100%",
+      opacity: 0,
+    },
+    in: {
+      x: "0%",
+      opacity: 1,
+    },
+  };
+  const transition = {
+    type: "spring",
+    duration: 5,
+  };
+  const listVariants = {
+    initial: {
+      x: "-100%",
+    },
+    in: {
+      x : "0%",
+    },
+  };
+  const pageNameVariants = {
+    initial: { opacity: -4 },
+    in: { opacity: 1 },
+  };
   return (
     <Main>
       <Wrapper>
-        <PageName>_about-me</PageName>
+        <PageName
+          as={motion.p}
+          initial="initial"
+          animate="in"
+          variants={pageNameVariants}
+          transition={{ duration: 5 }}
+        >
+          _about-me
+        </PageName>
         <List>
-          <Info onClick={() => setAccordionOpen(!infoAccordionOpen)}>
-            <ArrowImg
-              src={Arrow}
-              open={infoAccordionOpen}
-              animate={{ rotate: infoAccordionOpen ? 90 : 0 }}
-              transition={{ duration: 0.7 }}
-            />
-            <BtnName>Info</BtnName>
-          </Info>
-          {infoAccordionOpen && (
-            <InfoList
-              animate={{ paddingTop: 16, opacity: 1 }}
-              transition={{ duration: 2 }}
-            >
-              <Personal
-                onClick={() => {
-                  setPersonalOpen(true);
-                  setProfessionalOpen(false);
-                }}
-              >
-                <PersonalArrow
-                  src={Arrow}
-                  isPersonalOpen={personalOpen}
-                  animate={{ rotate: personalOpen ? 90 : 0 }}
-                  transition={{ duration: 0.7 }}
-                />
-                <img src={FolderIcon} />
-                <PersonalSpan>personal</PersonalSpan>
-              </Personal>
-              <Professional
-                onClick={() => {
-                  setProfessionalOpen(true);
-                  setPersonalOpen(false);
-                }}
-              >
-                <ProfessionalArrow
-                  src={Arrow}
-                  isProfessionalOpen={professionalOpen}
-                  animate={{ rotate: professionalOpen ? 90 : 0 }}
-                  transition={{ duration: 0.7 }}
-                />
-                <img src={GreenFolderIcon} />
-                <ProfessionalSpan>professional</ProfessionalSpan>
-              </Professional>
-            </InfoList>
-          )}
-          <Contact
-            onClick={() => setContactAccordionOpen(!contactAccordionOpen)}
+          <motion.div
+            style={{ display: "flex", flexDirection: "column" }}
+            initial="initial"
+            animate="in"
+            variants={listVariants}
+            transition={transition}
           >
-            <ArrowForContact
-              src={Arrow}
-              isOpen={contactAccordionOpen}
-              animate={{ rotate: contactAccordionOpen ? 90 : 0 }}
-              transition={{ duration: 0.7 }}
-            />
-            <BtnName>contacts</BtnName>
-          </Contact>
-          {contactAccordionOpen && (
-            <Box>
-              <EmailDiv
-                as={motion.div}
+            <Info onClick={() => setAccordionOpen(!infoAccordionOpen)}>
+              <ArrowImg
+                src={Arrow}
+                open={infoAccordionOpen}
+                animate={{ rotate: infoAccordionOpen ? 90 : 0 }}
+                transition={{ duration: 0.7 }}
+              />
+              <BtnName>Info</BtnName>
+            </Info>
+            {infoAccordionOpen && (
+              <InfoList
+                animate={{ paddingTop: 16, opacity: 1 }}
                 transition={{ duration: 2 }}
-                animate={{ paddingTop: 16 }}
               >
-                <EmailImg src={EmailIcon} />
-                <Email>achifutkaradze9@gmail.com</Email>
-              </EmailDiv>
-              <PhoneNumber>
-                <img src={PhoneIcon} />
-                <NumberP>+(995) 597-96-70-05</NumberP>
-              </PhoneNumber>
-            </Box>
-          )}
+                <Personal
+                  onClick={() => {
+                    setPersonalOpen(true);
+                    setProfessionalOpen(false);
+                  }}
+                >
+                  <PersonalArrow
+                    src={Arrow}
+                    isPersonalOpen={personalOpen}
+                    animate={{ rotate: personalOpen ? 90 : 0 }}
+                    transition={{ duration: 0.7 }}
+                  />
+                  <img src={FolderIcon} />
+                  <PersonalSpan>personal</PersonalSpan>
+                </Personal>
+                <Professional
+                  onClick={() => {
+                    setProfessionalOpen(true);
+                    setPersonalOpen(false);
+                  }}
+                >
+                  <ProfessionalArrow
+                    src={Arrow}
+                    isProfessionalOpen={professionalOpen}
+                    animate={{ rotate: professionalOpen ? 90 : 0 }}
+                    transition={{ duration: 0.7 }}
+                  />
+                  <img src={GreenFolderIcon} />
+                  <ProfessionalSpan>professional</ProfessionalSpan>
+                </Professional>
+              </InfoList>
+            )}
+            <Contact
+              onClick={() => setContactAccordionOpen(!contactAccordionOpen)}
+            >
+              <ArrowForContact
+                src={Arrow}
+                isOpen={contactAccordionOpen}
+                animate={{ rotate: contactAccordionOpen ? 90 : 0 }}
+                transition={{ duration: 0.7 }}
+              />
+              <BtnName>contacts</BtnName>
+            </Contact>
+            {contactAccordionOpen && (
+              <Box>
+                <EmailDiv
+                  as={motion.div}
+                  transition={{ duration: 2 }}
+                  animate={{ paddingTop: 16 }}
+                >
+                  <EmailImg src={EmailIcon} />
+                  <Email>achifutkaradze9@gmail.com</Email>
+                </EmailDiv>
+                <PhoneNumber>
+                  <img src={PhoneIcon} />
+                  <NumberP>+(995) 597-96-70-05</NumberP>
+                </PhoneNumber>
+              </Box>
+            )}
+          </motion.div>
         </List>
         {personalOpen ? (
-          <Container>
+          <Container
+            as={motion.div}
+            initial="initial"
+            animate="in"
+            variants={textVariants}
+            transition={transition}
+          >
             <ParagraphTitle>// personal-info </ParagraphTitle>
             <TextAboutMe>
               I have 5 years of experience in web development lorem ipsum dolor
@@ -108,8 +155,22 @@ export default function AboutMe() {
           </Container>
         ) : professionalOpen ? (
           <Container>
-            <ParagraphTitle>// professional-info </ParagraphTitle>
-            <TextAboutMe>
+            <ParagraphTitle
+              as={motion.div}
+              initial="initial"
+              animate="in"
+              variants={textVariants}
+              transition={transition}
+            >
+              // professional-info{" "}
+            </ParagraphTitle>
+            <TextAboutMe
+              as={motion.div}
+              initial="initial"
+              animate="in"
+              variants={textVariants}
+              transition={transition}
+            >
               I have 5 years of experience in web development lorem ipsum dolor
               sit amet, consectetur adipiscing elit, sed do eiusmod tempor
               incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -144,7 +205,7 @@ const PageName = styled.p`
   padding-left: 18px;
   @media screen and (min-width: 1280px) {
     position: absolute;
-    top: 85 px;
+    top: 85px;
     font-size: clamp(0.5rem, 2.5vw, 1rem);
   }
 `;
@@ -157,6 +218,7 @@ const List = styled.div`
     width: 130%;
     border-right: 1px solid rgb(30, 45, 61);
     padding-top: 40px;
+    overflow: hidden;
   }
 `;
 const Info = styled.button`

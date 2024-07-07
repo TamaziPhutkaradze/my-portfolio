@@ -26,42 +26,63 @@ export default function Projects() {
     return selectedItems.every((tech: any) => item.techStack.includes(tech));
   });
   console.log(filterData);
+  // animation
+  const pageVariants = {
+    initial: {
+      opacity: 0,
+      scale: 0.5,
+    },
+    in: {
+      scale: 1,
+      opacity: 1,
+    },
+  };
+  const transition = {
+    type: "spring",
+    duration: 3,
+  };
   return (
     <Wrapper>
-      <ProjectFilterForDesk>
-        <PageTitleDiv
-          animate={{ paddingLeft: 27 }}
-          transition={{ duration: 2 }}
-        >
-          <PageTitle>_projects</PageTitle>
-        </PageTitleDiv>
-        <Btn
-          onClick={() => setProjectsOpen(!projectsOpen)}
-          animate={{ marginTop: 29 }}
-          transition={{ duration: 2 }}
-        >
-          <ArrowImg
-            src={Arrow}
-            btnClicked={projectsOpen}
-            transition={{ duration: 0.7 }}
-            animate={{ rotate: projectsOpen ? 90 : 0 }}
-          />
-          <BtnName>Tech Stacks</BtnName>
-        </Btn>
-        {projectsOpen ? (
-          <TechStacksList
-            animate={{ paddingTop: 16 }}
+      <MotionDiv
+        initial="initial"
+        animate="in"
+        variants={pageVariants}
+        transition={transition}
+      >
+        <ProjectFilterForDesk>
+          <PageTitleDiv
+            animate={{ paddingLeft: 27 }}
             transition={{ duration: 2 }}
           >
-            {data.TechStack.map((item, index) => {
-              return (
-                <FirstLabel key={index}>
-                  <input
-                    type="checkbox"
-                    value={item}
-                    checked={selectedItems.includes(item)}
-                    onChange={handleChange}
-                    className="
+            <PageTitle>_projects</PageTitle>
+          </PageTitleDiv>
+          <Btn
+            onClick={() => setProjectsOpen(!projectsOpen)}
+            animate={{ marginTop: 29 }}
+            transition={{ duration: 2 }}
+          >
+            <ArrowImg
+              src={Arrow}
+              btnClicked={projectsOpen}
+              transition={{ duration: 0.7 }}
+              animate={{ rotate: projectsOpen ? 90 : 0 }}
+            />
+            <BtnName>Tech Stacks</BtnName>
+          </Btn>
+          {projectsOpen ? (
+            <TechStacksList
+              animate={{ paddingTop: 16 }}
+              transition={{ duration: 2 }}
+            >
+              {data.TechStack.map((item, index) => {
+                return (
+                  <FirstLabel key={index}>
+                    <input
+                      type="checkbox"
+                      value={item}
+                      checked={selectedItems.includes(item)}
+                      onChange={handleChange}
+                      className="
                   peer
                   relative 
                   appearance-none 
@@ -75,56 +96,57 @@ export default function Projects() {
                   bg-no-repeat
                   bg-center
                   "
-                  />
-                  <TechName key={index}>{item}</TechName>
-                </FirstLabel>
+                    />
+                    <TechName key={index}>{item}</TechName>
+                  </FirstLabel>
+                );
+              })}
+            </TechStacksList>
+          ) : (
+            ""
+          )}
+        </ProjectFilterForDesk>
+        <DesktopVersionDiv>
+          <ProjectsContainer>
+            <SelectedTechStacks
+              animate={{ opacity: 1 }}
+              transition={{ duration: 2 }}
+            >
+              // projects /
+              {selectedItems.length < 1
+                ? "All"
+                : selectedItems.map((item: string, index: number) => {
+                    return <Names key={index}>{item},</Names>;
+                  })}
+            </SelectedTechStacks>
+          </ProjectsContainer>
+          <CardsContainer>
+            {filterData.map((item) => {
+              return (
+                <div
+                  key={item.id}
+                  style={{
+                    display: "flex",
+                    gap: "20px",
+                    flexDirection: "column",
+                  }}
+                >
+                  <ProjectNum>project {item.id}</ProjectNum>
+                  <Card animate={{ opacity: 1 }} transition={{ duration: 2 }}>
+                    <ImgDiv>
+                      <ProjectImg src={item.img} />
+                    </ImgDiv>
+                    <Line /> <ProjectTitle>{item.name}</ProjectTitle>
+                    <a href={item.live} target="_blank">
+                      <LiveButton>view-project</LiveButton>{" "}
+                    </a>{" "}
+                  </Card>
+                </div>
               );
             })}
-          </TechStacksList>
-        ) : (
-          ""
-        )}
-      </ProjectFilterForDesk>
-      <DesktopVersionDiv>
-        <ProjectsContainer>
-          <SelectedTechStacks
-            animate={{ opacity: 1 }}
-            transition={{ duration: 2 }}
-          >
-            // projects /
-            {selectedItems.length < 1
-              ? "All"
-              : selectedItems.map((item: string, index: number) => {
-                  return <Names key={index}>{item},</Names>;
-                })}
-          </SelectedTechStacks>
-        </ProjectsContainer>
-        <CardsContainer>
-          {filterData.map((item) => {
-            return (
-              <div
-                key={item.id}
-                style={{
-                  display: "flex",
-                  gap: "20px",
-                  flexDirection: "column",
-                }}
-              >
-                <ProjectNum>project {item.id}</ProjectNum>
-                <Card animate={{ opacity: 1 }} transition={{ duration: 2 }}>
-                  <ImgDiv>
-                    <ProjectImg src={item.img} />
-                  </ImgDiv>
-                  <Line /> <ProjectTitle>{item.name}</ProjectTitle>
-                  <a href={item.live} target="_blank">
-                    <LiveButton>view-project</LiveButton>{" "}
-                  </a>{" "}
-                </Card>
-              </div>
-            );
-          })}
-        </CardsContainer>
-      </DesktopVersionDiv>
+          </CardsContainer>
+        </DesktopVersionDiv>
+      </MotionDiv>
     </Wrapper>
   );
 }
@@ -132,6 +154,8 @@ const Wrapper = styled.div`
   background-color: rgb(1, 22, 39);
   padding: 21px 0 38px;
   min-height: 100vh;
+  overflow: hidden;
+
   @media screen and (min-width: 1280px) {
     display: flex;
     padding: 0;
@@ -266,4 +290,12 @@ const ProjectFilterForDesk = styled.div`
   border-right: 1px solid rgb(30, 45, 61);
   min-width: 300px;
   padding-top: 21px;
+`;
+const MotionDiv = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  @media screen and (min-width: 1280px) {
+    flex-direction: row;
+  }
 `;
