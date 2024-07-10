@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import Arrow from "../assets/arrow.svg";
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
@@ -24,7 +23,6 @@ export default function Contact(props: { windowWidth: number }) {
     formState: { errors },
     watch,
   } = useForm<inputTypes>();
-  console.log("errors", errors);
   const sendEmail = (e: any) => {
     emailjs
       .sendForm("service_8918u9i", "template_7kbv0ll", form.current, {
@@ -281,205 +279,39 @@ export default function Contact(props: { windowWidth: number }) {
     </Wrapper>
   );
 }
-const Wrapper = styled(motion.div)`
-  background-color: rgb(1, 22, 39);
-  overflow: hidden auto;
-  height: 100vh;
-  @media screen and (min-width: 1280px) {
-    display: flex;
-  }
-`;
-const PageTitle = styled.div`
-  padding: 28px 21px;
-  color: white;
-  font-size: 16px;
-  font-weight: 400;
-`;
-const Contacts = styled.button`
-  background-color: #1e2d3d;
-  padding: 5px 0 5px 27px;
-  width: 100%;
-  text-align: start;
-  display: flex;
-  gap: 12px;
-  align-items: center;
-`;
-const FindMe = styled.button`
-  background-color: #1e2d3d;
-  padding: 5px 0 5px 27px;
-  width: 100%;
-  text-align: start;
-  display: flex;
-  gap: 12px;
-  align-items: center;
-`;
-const Buttons = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-`;
-const BtnName = styled.p`
-  color: white;
-  font-size: 16px;
-  font-weight: 400;
-`;
-const ArrowImg = styled(motion.img)<{ open: boolean }>`
-  transform: ${(props) => (props.open === true ? "rotate(90deg)" : "")};
-`;
-const EmailDiv = styled.div`
-  display: flex;
-  gap: 8px;
-`;
-const EmailImg = styled.img``;
-const Email = styled.p`
-  color: #607b96;
-  font-size: 16px;
-`;
-const PhoneNumber = styled.div`
-  display: flex;
-  gap: 8px;
-`;
-const Box = styled.div`
-  padding-bottom: 16px;
-  padding-left: 27px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-`;
-const Socials = styled(motion.div)`
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
-  padding-bottom: 16px;
-`;
-const NumberP = styled.p`
-  color: #607b96;
-`;
-const LinkDiv = styled(motion.div)`
-  display: flex;
-  gap: 9px;
-  align-items: center;
-  color: #607b96;
-`;
-const TextsContainer = styled.form`
-  display: flex;
-  flex-direction: column;
-  padding: 42px 21px 38px;
-  gap: 15px;
-  @media screen and (min-width: 1280px) {
-    width: 82%;
-    height: 100vh;
-    border-right: 1px solid rgb(30, 45, 61);
-    padding: 70px 35px 0;
-  }
-`;
-const InputDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-`;
-const InputName = styled.p`
-  color: #607b96;
-  font-size: 16px;
-  font-weight: 400;
-`;
-const Input = styled.input`
-  width: 100%;
-  height: 41px;
-  background-color: #011221;
-  color: #ffff;
-  border-radius: 10px;
-  padding-left: 15px;
-`;
-const TextArea = styled.textarea`
-  width: 100%;
-  height: 145px;
-  background-color: #011221;
-  border-radius: 10px;
-  resize: none;
-  padding: 15px;
-  color: #ffff;
-  font-size: 16px;
-  font-weight: 400;
-`;
-const SubmitButton = styled.button`
-  width: 146px;
-  background-color: #1c2b3a;
-  color: white;
-  font-size: 14px;
-  font-weight: 400;
-  padding: 10px 14px;
-  border-radius: 5px;
-`;
-const TextBox = styled.div`
-  display: flex;
-  gap: 15px;
-  flex-direction: column;
-  text-align: center;
-`;
-const Thank = styled.p`
-  color: white;
-  font-weight: 400;
-  font-size: 24px;
-`;
-const AcceptedMessage = styled.span`
-  color: #607b96;
-  font-size: 18px;
-`;
-const ButtonNewMessage = styled.button`
-  width: 163px;
-  padding: 10px 14px;
-  color: white;
-  font-size: 14px;
-  border-radius: 5px;
-  background-color: #1c2b3a;
-  margin: auto;
-`;
-const ErrorMessage = styled.p`
-  color: red;
-  font-size: 14px;
-  font-weight: 100;
-  margin-top: -7px;
-`;
-const ButtonsDiv = styled.div`
-  @media screen and (min-width: 1280px) {
-    width: 381px;
-    border-right: 1px solid rgb(30, 45, 61);
-  }
-`;
-const SendTexts = styled.div`
-  @media screen and (min-width: 1280px) {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    padding: 80px 35px 0;
-    width: 100%;
-  }
-`;
-const ButtonAn = styled.p`
-  color: #5565e8;
-  font-size: 16px;
-  font-weight: 400;
-`;
-const MessageAn = styled.p`
-  line-height: 1.5;
-  color: #5565e8;
-`;
-const AddEventAn = styled.div`
-  color: #5565e8;
-  font-size: 16px;
-`;
-const InputsAndTextsDiv = styled.div`
-  @media screen and (min-width: 1280px) {
-    display: flex;
-    width: 100%;
-  }
-`;
-const MotionDiv = styled(motion.div)`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  @media screen and (min-width: 1280px) {
-    flex-direction: row;
-  }
-`;
+// styles-components
+import {
+  Wrapper,
+  PageTitle,
+  Contacts,
+  FindMe,
+  Buttons,
+  BtnName,
+  ArrowImg,
+  EmailDiv,
+  EmailImg,
+  Email,
+  PhoneNumber,
+  Box,
+  Socials,
+  NumberP,
+  LinkDiv,
+  TextsContainer,
+  InputDiv,
+  InputName,
+  Input,
+  TextArea,
+  SubmitButton,
+  TextBox,
+  Thank,
+  AcceptedMessage,
+  ButtonNewMessage,
+  ErrorMessage,
+  ButtonsDiv,
+  SendTexts,
+  ButtonAn,
+  MessageAn,
+  AddEventAn,
+  InputsAndTextsDiv,
+  MotionDiv,
+} from "../styles/ContactStyles";

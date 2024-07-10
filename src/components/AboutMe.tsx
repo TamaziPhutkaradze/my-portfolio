@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import Arrow from "../assets/arrow.svg";
 import FolderIcon from "../assets/folderIcon.svg";
 import GreenFolderIcon from "../assets/greenFolderIcon.svg";
@@ -6,6 +5,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import EmailIcon from "../assets/emailIcon.svg";
 import PhoneIcon from "../assets/phoneIcon.svg";
+
 export default function AboutMe() {
   const [infoAccordionOpen, setAccordionOpen] = useState<boolean>(true);
   const [contactAccordionOpen, setContactAccordionOpen] =
@@ -31,7 +31,7 @@ export default function AboutMe() {
       x: "-100%",
     },
     in: {
-      x : "0%",
+      x: "0%",
     },
   };
   const pageNameVariants = {
@@ -143,14 +143,12 @@ export default function AboutMe() {
           >
             <ParagraphTitle>// personal-info </ParagraphTitle>
             <TextAboutMe>
-              I have 5 years of experience in web development lorem ipsum dolor
-              sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-              veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-              ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-              in. Duis aute irure dolor in reprehenderit in voluptate velit esse
-              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-              officia deserunt mollit anim id est laborum.
+              Hey, I'm Tamazi from Batumi, Georgia. I'm purposeful and work hard
+              every day for my development and progress. My dedication drives me
+              to constantly improve and reach new heights. You can see my
+              projects to get a glimpse of what I can do and the skills I've
+              honed. I'm passionate about what I do, and I'm always pushing
+              myself to be better.
             </TextAboutMe>
           </Container>
         ) : professionalOpen ? (
@@ -171,14 +169,13 @@ export default function AboutMe() {
               variants={textVariants}
               transition={transition}
             >
-              I have 5 years of experience in web development lorem ipsum dolor
-              sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-              veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-              ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-              in. Duis aute irure dolor in reprehenderit in voluptate velit esse
-              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-              officia deserunt mollit anim id est laborum.
+              I am a front-end developer with over a year of experience teaching
+              web development since 2023. Currently working in IT support, I am
+              eager to transition to a full-time web developer role. I am known
+              for my flexibility and adaptability, always ready to learn new
+              technologies and improve my skills. My passion for creating
+              responsive, user-friendly web interfaces drives me to deliver
+              high-quality results in every project.
             </TextAboutMe>
           </Container>
         ) : null}
@@ -186,145 +183,31 @@ export default function AboutMe() {
     </Main>
   );
 }
-const Main = styled.div`
-  background-color: rgb(1, 22, 39);
-`;
-const Wrapper = styled.div`
-  padding: 21px 0 38px;
-  height: 100vh;
-  overflow: hidden auto;
-  @media screen and (min-width: 1280px) {
-    display: flex;
-    justify-content: space-between;
-    padding: 0;
-  }
-`;
-const PageName = styled.p`
-  color: white;
-  font-size: clamp(1rem, 2.5vw, 2rem);
-  padding-left: 18px;
-  @media screen and (min-width: 1280px) {
-    position: absolute;
-    top: 85px;
-    font-size: clamp(0.5rem, 2.5vw, 1rem);
-  }
-`;
-const List = styled.div`
-  padding-top: 29px;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  @media screen and (min-width: 1280px) {
-    width: 130%;
-    border-right: 1px solid rgb(30, 45, 61);
-    padding-top: 40px;
-    overflow: hidden;
-  }
-`;
-const Info = styled.button`
-  background-color: #1e2d3d;
-  padding: 5px 0 5px 27px;
-  width: 100%;
-  text-align: start;
-  display: flex;
-  gap: 12px;
-  align-items: center;
-`;
-const BtnName = styled.span`
-  color: white;
-  font-size: 16px;
-`;
-const Contact = styled.button`
-  background-color: #1e2d3d;
-  padding: 5px 0 5px 27px;
-  width: 100%;
-  text-align: start;
-  display: flex;
-  gap: 12px;
-  align-items: center;
-`;
-const InfoList = styled(motion.div)<{}>`
-  padding-left: 27px;
-  padding-bottom: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  opacity: 0;
-`;
-const Personal = styled.div`
-  display: flex;
-  gap: 12px;
-  align-items: center;
-`;
-const PersonalSpan = styled.span`
-  color: #607b96;
-`;
-const Professional = styled.div`
-  display: flex;
-  gap: 12px;
-  align-items: center;
-`;
-const ProfessionalSpan = styled.span`
-  color: #607b96;
-`;
-const ArrowImg = styled(motion.img)<{ open: boolean }>`
-  transform: ${(props) => (props.open === true ? "rotate(90deg)" : "")};
-`;
-const EmailDiv = styled.div`
-  display: flex;
-  gap: 8px;
-`;
-const EmailImg = styled.img``;
-const Email = styled.p`
-  color: #607b96;
-  font-size: 16px;
-`;
-const PhoneNumber = styled.div`
-  display: flex;
-  gap: 8px;
-`;
-const Box = styled.div`
-  padding-bottom: 16px;
-  padding-left: 27px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-`;
-const NumberP = styled.p`
-  color: #607b96;
-`;
-const ArrowForContact = styled(motion.img)<{ isOpen: boolean }>`
-  transform: ${(props) => (props.isOpen ? "rotate(90deg)" : "")};
-`;
-const Container = styled.div`
-  padding: 38px 27px;
-  display: flex;
-  flex-direction: column;
-  gap: 17px;
-  @media screen and (min-width: 1280px) {
-    padding: 0;
-  }
-`;
-const ParagraphTitle = styled.p`
-  color: white;
-  font-size: 16px;
-  @media screen and (min-width: 1280px) {
-    padding: 20px 0 0 15px;
-  }
-`;
-const TextAboutMe = styled.div`
-  font-size: 16px;
-  color: #607b96;
-  @media screen and (min-width: 1280px) {
-    border-top: 1px solid rgb(30, 45, 61);
-    padding: 20px 15px;
-  }
-`;
-const PersonalArrow = styled(motion.img)<{ isPersonalOpen: boolean }>`
-  transform: ${(props) =>
-    props.isPersonalOpen === true ? "rotate(90deg)" : ""};
-`;
-const ProfessionalArrow = styled(motion.img)<{ isProfessionalOpen: boolean }>`
-  transform: ${(props) =>
-    props.isProfessionalOpen === true ? "rotate(90deg)" : ""};
-`;
+// style-components
+import {
+  Main,
+  Wrapper,
+  PageName,
+  List,
+  Info,
+  BtnName,
+  Contact,
+  InfoList,
+  Personal,
+  PersonalSpan,
+  Professional,
+  ProfessionalSpan,
+  ArrowImg,
+  EmailDiv,
+  EmailImg,
+  Email,
+  ProfessionalArrow,
+  PhoneNumber,
+  PersonalArrow,
+  ParagraphTitle,
+  Container,
+  TextAboutMe,
+  NumberP,
+  Box,
+  ArrowForContact,
+} from "../styles/AboutMeStyles";

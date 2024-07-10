@@ -6,7 +6,6 @@ import CodeImg4 from "../assets/DesktopImgs/mainPageImg-4.svg";
 import bgImg from "../assets/DesktopImgs/bg-color-desktop.png";
 
 export default function Hello(props: { windowWidth: number }) {
-  console.log(props.windowWidth);
   const textDivVariants = {
     initial: {
       opacity: 0,
