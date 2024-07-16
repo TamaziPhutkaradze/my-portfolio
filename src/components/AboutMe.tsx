@@ -169,13 +169,13 @@ export default function AboutMe() {
               variants={textVariants}
               transition={transition}
             >
-              I am a front-end developer with over a year of experience teaching
-              web development since 2023. Currently working in IT support, I am
-              eager to transition to a full-time web developer role. I am known
-              for my flexibility and adaptability, always ready to learn new
-              technologies and improve my skills. My passion for creating
-              responsive, user-friendly web interfaces drives me to deliver
-              high-quality results in every project.
+              I have been studying frontend development for more than a year.
+              Currently working in IT support, I am eager to transition to a
+              full-time web developer role. I am known for my flexibility and
+              adaptability, always ready to learn new technologies and improve
+              my skills. My passion for creating responsive, user-friendly web
+              interfaces drives me to deliver high-quality results in every
+              project.
             </TextAboutMe>
           </Container>
         ) : null}
